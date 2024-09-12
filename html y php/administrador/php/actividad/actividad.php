@@ -42,10 +42,10 @@ include_once "consultar.php";
         <section class="col -lg- 4 col-md-3 col-sm-6 col-12 mb-4">
           <section class="card">
             <section class="card-body">
-              <h5 class="card-title"><?php echo htmlspecialchars($actividad->nom_actividad); ?></h5>
+              <h3 class="card-title text-center"><b><?php echo htmlspecialchars($actividad->nom_actividad); ?></b></h3>
+              <p class="card-text"><?php echo htmlspecialchars($actividad->nombre_logro); ?></p>
               <p class="card-text"><?php echo htmlspecialchars($actividad->descrip_actividad); ?></p>
               <p class="crad-text"><?php echo htmlspecialchars($actividad->fecha_entrega); ?></p>
-              <p class="card-text"><?php echo htmlspecialchars($actividad->nombre_logro); ?></p>
               <div class="d-flex justify-content-between">
 
                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $actividad->id_actividad ?>">

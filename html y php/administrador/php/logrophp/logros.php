@@ -86,16 +86,16 @@ include "consultarLogro.php";
             <input type="hidden" name="codigo_logro" value="<?=$item->codigo_logro?>">
             <div class="mb-3">
               <label for="nameLogroUpdate<?=$item->codigo_logro?>" class="form-label">Nombre del Logro</label>
-              <input name="logro" type="text" class="form-control" id="nameLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->nombre_logro) ?>">
+              <input name="nombre_logro" type="text" class="form-control" id="nameLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->nombre_logro) ?>">
             </div>
             <div class="mb-3">
               <label for="descripLogroUpdate<?=$item->codigo_logro?>" class="form-label">Descripción del Logro</label>
-              <input name="descripcion_logro" type="text" class="form-control" id="descripLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->descrip_logro) ?>">
+              <input name="descrip_logro" type="text" class="form-control" id="descripLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->descrip_logro) ?>">
             </div>
             <div class="mb-3">
               <label for="materiaLogroUpdate<?=$item->codigo_logro?>" class="form-label">Materia a la que pertenece</label>
               <select name="id_materia" class="form-select" id="materiaLogroUpdate<?=$item->codigo_logro?>">
-                <option value="1" <?= $item->id_materia == 1 ? 'selected' : '' ?>>MATEMATICAS</option>
+                <option value="1" <?= $item->id_materia == 1 ? 'selected' : '' ?>>Español</option>
                 <option value="2" <?= $item->id_materia == 2 ? 'selected' : '' ?>>ESPAÑOL</option>
                 <option value="3" <?= $item->id_materia == 3 ? 'selected' : '' ?>>INGLES</option>
               </select>

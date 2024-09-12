@@ -59,7 +59,7 @@
         <section class="pagina" id="pagina">
             <section class="conteinerPagina">
                 <figure class="imagenPage">
-                    <img src="" alt="imagen"></img>
+                    <img src="imagenes/paginaadmin.png" alt="imagen" width="850px"></img>
                 </figure>
                 <section class="informacionPage">
                     <p>Descripcion un poco de la pagina</p>
@@ -67,7 +67,7 @@
             </section>
             <section class="conteinerPagina reverse">
                 <figure class="imagenPage">
-                    <img src="" alt="imagen"></img>
+                    <img src="imagenes/paginaestudent.png" alt="imagen"  width="850px"></img>
                 </figure>
                 <section class="informacionPage">
                     <p>Descripcion un poco de la pagina</p>

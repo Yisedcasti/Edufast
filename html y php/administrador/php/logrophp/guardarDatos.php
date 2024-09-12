@@ -1,34 +1,34 @@
 <?php
 # Verifica que todos los datos necesarios estén presentes
 if(
-    !isset($_POST["logro"]) || 
-    !isset($_POST["descripcion_logro"]) || 
+    !isset($_POST["nombre_logro"]) || 
+    !isset($_POST["descrip_logro"]) || 
     !isset($_POST["id_materia"]) || 
     !isset($_POST["codigo_logro"])
 ) {
     echo "Faltan los siguientes datos:<br>";
-    if(!isset($_POST["logro"])) echo "Falta el nombre del logro.<br>";
-    if(!isset($_POST["descripcion_logro"])) echo "Falta la descripción del logro.<br>";
+    if(!isset($_POST["nombre_logro"])) echo "Falta el nombre del logro.<br>";
+    if(!isset($_POST["descrip_logro"])) echo "Falta la descripción del logro.<br>";
     if(!isset($_POST["id_materia"])) echo "Falta la materia.<br>";
     if(!isset($_POST["codigo_logro"])) echo "Falta el código del logro.<br>";
     exit();
 }
 
 try {
-    # Incluye la conexión a la base de datos
+    # Incluye la conexión a la baxcddse de datos
     include_once "conexion.php";
 
     # Recoge los datos del formulario
     $codigo_logro = $_POST["codigo_logro"];
-    $logro = $_POST["logro"];
-    $descripcion_logro = $_POST["descripcion_logro"];
+    $nombre_logro = $_POST["nombre_logro"];
+    $descrip_logro = $_POST["descrip_logro"];
     $id_materia = $_POST["id_materia"];
 
     # Prepara la sentencia SQL
-    $sentencia = $base_de_datos->prepare("UPDATE logro SET logro = ?, descripcion_logro = ?, id_materia = ? WHERE codigo_logro = ?;");
+    $sentencia = $base_de_datos->prepare("UPDATE logro SET nombre_logro = ?, descrip_logro = ?, id_materia = ? WHERE codigo_logro = ?;");
     
     # Ejecuta la sentencia pasando los valores correspondientes
-    $resultado = $sentencia->execute([$logro, $descripcion_logro, $id_materia, $codigo_logro]);
+    $resultado = $sentencia->execute([$nombre_logro, $descrip_logro, $id_materia, $codigo_logro]);
 
     # Verifica el resultado
     if($resultado === TRUE) {
