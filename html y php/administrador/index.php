@@ -58,27 +58,21 @@
 
         <section class="pagina" id="pagina">
             <section class="conteinerPagina">
-                <figure class="imagenPage">
-                    <img src="imagenes/paginaadmin.png" alt="imagen" width="850px"></img>
+                <figure class="imagenPage col-6 p-3">
+                    <img src="imagenes/paginaadmin.png" alt="imagen" width="1900px"></img>
                 </figure>
-                <section class="informacionPage">
-                    <p>Descripcion un poco de la pagina</p>
+                <section class="informacionPage  p-3">
+                    <h1 class="text-center">VISTA REGISTRO</h1>
+                    <p><i>Edufast es una plataforma diseñada para facilitar el acceso a información educativa, donde podrás encontrar cursos, grados actividades y los logros asociados a ellas. También podrás consultar la asistencia y las materias disponibles.Dependiendo de tu rol o profesión, tendrás acceso a diferentes funcionalidades y estilos personalizados en las páginas. Es un software intuitivo, fácil de usar y adaptado para cubrir diversas necesidades, asegurando una experiencia agradable para todos los usuarios.</i></p>
                 </section>
             </section>
             <section class="conteinerPagina reverse">
-                <figure class="imagenPage">
-                    <img src="imagenes/paginaestudent.png" alt="imagen"  width="850px"></img>
+                <figure class="imagenPage col-6 p-3">
+                    <img src="imagenes/paginaestudent.png" alt="imagen"  width="1900px"></img>
                 </figure>
                 <section class="informacionPage">
-                    <p>Descripcion un poco de la pagina</p>
-                </section>
-            </section>
-            <section class="conteinerPagina">
-                <figure class="imagenPage">
-                    <img src="" alt="imagen"></img>
-                </figure>
-                <section class="informacionPage">
-                    <p>Descripcion un poco de la pagina</p>
+                <h1 class="text-center">VISTA REGISTRO</h1>
+                <p><i>Edufast es una plataforma diseñada para facilitar el acceso a información educativa, donde podrás encontrar cursos, grados actividades y los logros asociados a ellas. También podrás consultar la asistencia y las materias disponibles.Dependiendo de tu rol o profesión, tendrás acceso a diferentes funcionalidades y estilos personalizados en las páginas. Es un software intuitivo, fácil de usar y adaptado para cubrir diversas necesidades, asegurando una experiencia agradable para todos los usuarios.</i></p>
                 </section>
             </section>
             </section>
@@ -86,28 +80,28 @@
             
         <section class="eventos" id="eventos">
             <div id="carouselExampleCaptions" class="carousel slide">
-                <!--<div class="carousel-indicators">
+                <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                   <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="../administrador/imagenes/EVENTO1.jpg" class="d-block w-200" alt="...">
+                    <img src="../administrador/imagenes/EVENTO1.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5>First slide label</h5>
                       <p>Some representative placeholder content for the first slide.</p>
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img src="../administrador/imagenes/EVENTO1.1.jpg" class="d-block w-200" alt="...">
+                    <img src="../administrador/imagenes/EVENTO1.1.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5>Second slide label</h5>
                       <p>Some representative placeholder content for the second slide.</p>
                     </div>
                   </div>
                   <div class="carousel-item">
-                    <img src="../administrador/imagenes/EVENTO1.2.jpg" class="d-block w-200" alt="...">
+                    <img src="../administrador/imagenes/EVENTO1.2.jpg" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                       <h5>Third slide label</h5>
                       <p>Some representative placeholder content for the third slide.</p>
@@ -122,7 +116,7 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
-              </div>-->
+</div>
         </section>
         <section>
             <section class="noticias" id="noticias">
@@ -176,42 +170,41 @@
                     </footer>
                 </article>
             </section>
-            
-        <section id="grupo"class="equipo">
-                <h2><b>EQUIPO</b></h2>
+        <section id="grupo"class="equipo col-md-12">
+        <h2 class="text-center"><b>EQUIPO</b></h2>
                 <section class="containerequipo">
                     <section class="cardequipo">
                         <figure class="imgequipo">
-                            <img src="" alt="equipo">
+                            <img src="https://tse4.mm.bing.net/th?id=OIP.VxnfJYTfgX5SyH8LRiXtVgHaE8&pid=Api&P=0&h=180" alt="equipo">
                         </figure>
                         <section class="contentequipo">
-                            <h2>COORDINADOR</h2>
-                            <P>NOMBRE</P>
-                            <p>TELEFONO</p>
-                            <P>CORREO</P>
+                            <h2 class="text-center">COORDINADOR</h2>
+                            <P>Juan Pablo Peña </P>
+                            <p>314457654</p>
+                            <P>JuanPeña@Cedidsanpablo.edu.co</P>
         
                         </section>
                     </section>
                     <section class="cardequipo">
                         <figure class="imgequipo">
-                            <img src="" alt="equipo">
+                            <img src="https://tse3.mm.bing.net/th?id=OIP.mWTS6Gn1W3c2fHLvV3e9yQHaJ4&pid=Api&P=0&h=180" alt="equipo">
                         </figure>
                         <section class="contentequipo">
-                            <h2>PROFESOR</h2>
-                            <P>NOMBRE</P>
-                            <p>TELEFONO</p>
-                            <P>CORREO</P>
+                            <h2 class="text-center">Rectora</h2>
+                            <P>Lusia Fernanda Perez Castañeda</P>
+                            <p>321908765</p>
+                            <P>LuisaPerez@Cedidsanpablo.edu.co</P>
                         </section>
                     </section>
                     <section class="cardequipo">
                         <figure class="imgequipo">
-                            <img src="" alt="equipo">
+                            <img src="https://tse3.mm.bing.net/th?id=OIP.RobrDmv-954D05PRx2UHsQHaEG&pid=Api&P=0&h=180" alt="equipo">
                         </figure>
                         <section class="contentequipo">
-                            <h2>SECRETARIA</h2>
-                            <P>NOMBRE</P>
-                            <p>TELEFONO</p>
-                            <P>CORREO</P>
+                            <h2 class="text-center">SECRETARIA</h2>
+                            <P>Maria Rodrigez</P>
+                            <p>3213675499</p>
+                            <P>maria@Cedidsanpablo.edu.co</P>
                         </section>
                     </section>
                 </section>    

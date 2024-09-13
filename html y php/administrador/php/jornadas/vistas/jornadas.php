@@ -29,7 +29,7 @@ include_once "consultar.php"; // Incluye el archivo de consulta
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../../admin/pag_principal.php">Volver</a>
+                        <a class="nav-link" href="../../../admin/pag_principal.php">Volver</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../funciones/jornadasCrear.php">Crear</a>

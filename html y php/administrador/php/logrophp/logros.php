@@ -12,6 +12,7 @@ include "consultarLogro.php";
     <title>Logro</title>
 </head>
 <body>
+  </style>
 <header class="navbar navbar-expand-lg bg-body-tertiary shadow">
     <div class="container d-flex justify-content-between align-items-left">
         <!-- Logo -->
@@ -34,21 +35,23 @@ include "consultarLogro.php";
     </div>
 </header>
 
-<main class="main-container">
+<main class="main-container" style="flex:4;">
   <h1 class="title text-center mt-3">LOGROS</h1>
   <section class="row p-3">
     <?php foreach($logro as $item): ?>
       <section class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4">
         <section class="card">
           <section class="card-body text-center" style="font-family: Arial, Helvetica, sans-serif;">
-            <p class="card-text text-left"><b>Código Logro: </b><?php echo htmlspecialchars($item->codigo_logro); ?></p>
-            <p class="card-text text-left"><b>Número De Materia: </b><?php echo htmlspecialchars($item->id_materia); ?></p>
-            <h5 class="card-title text-center"><b>Título: </b><?php echo htmlspecialchars($item->nombre_logro); ?></h5>
-            <p class="card-text"><b>Descripción: </b><?php echo htmlspecialchars($item->descrip_logro); ?></p>
+          <div class="card-color">
+          <p class="card-text text-left"><span id="cardcolor"><b>Código Logro: </b><?php echo htmlspecialchars($item->codigo_logro); ?></span></p>
+          <p class="card-text text-left"><span id="cardcolor"><b>Número De Materia: </b><?php echo htmlspecialchars($item->id_materia); ?></p></span>
+            <h5 class="card-title text-center"><b>Título: </b><span id="cardcolor"><?php echo htmlspecialchars($item->nombre_logro); ?></span></h5>
+            <p class="card-text"><b>Descripción: </b><span id="cardcolor"><?php echo htmlspecialchars($item->descrip_logro); ?></span></p>
+            
             <div class="d-flex justify-content-between">
               <button type="button" class="btn btn-outline-dark boton-carrito"  data-bs-toggle="modal" data-bs-target="#eliminarModal<?=$item->codigo_logro?>"><i class="fas fa-trash-alt"></i></button>
               <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#actualizar<?=$item->codigo_logro?>"><i class="fas fa-edit"></i></button>
-            </div>
+            </div> 
           </section>
         </section>
       </section>
@@ -57,15 +60,16 @@ include "consultarLogro.php";
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title text-center"><b>Eliminar Logro <?= $item->codigo_logro ?></b></h5>
+          <h5 class="modal-title text-center"><b>Eliminar Logro </b></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>¿Está seguro que desea eliminar el logro <b><?= $item->codigo_logro ?></b>? Esta acción no se puede deshacer.</p>
+          <p>¿Está seguro que desea eliminar el logro <b><?= $item->nombre_logro ?></b>? Esta acción no se puede deshacer.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
           <form method="POST" action="eliminarlogro.php">
+          <input type="hidden" name="id_materia" value="<?=$item->id_materia?>">
             <input type="hidden" name="codigo_logro" value="<?=$item->codigo_logro?>">
             <button type="submit" class="btn btn-danger">Eliminar</button>
           </form>
