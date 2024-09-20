@@ -1,26 +1,36 @@
 <?php
 try {
-    // Incluir la conexión a la base de datos
     include_once "../configuracion/conexion.php";
-    
-    $grado = $_POST["nivel_educativo"];
-    $nivel_educativo = $_POST["grado"];
 
-    // Preparar la sentencia SQL
-    $sentencia = $base_de_datos->prepare("INSERT INTO grado ( nivel_educativo,grado) 
-        VALUES (?, ?);");
-    
-    // Ejecutar la sentencia con los datos proporcionados
-    $resultado = $sentencia->execute([ $nivel_educativo, $grado]);
+    $nivel_educativo = $_POST["nivel_educativo"];
+    $grados = isset($_POST['grado']) ? $_POST['grado'] : []; // Array de checkboxes seleccionados
+    $jornada_id_jornada = $_POST["jornada_id_jornada"]; 
 
-    if ($resultado === TRUE) {
-        echo "Cambios Guardados";
+    if (empty($grados)) {
+        echo "Por favor selecciona al menos un grado.";
     } else {
-        echo "Algo salió mal. Por favor, verifica que la tabla exista.";
+
+        $sentencia = $base_de_datos->prepare("INSERT INTO grado (nivel_educativo, grado, jornada_id_jornada) 
+            VALUES (?, ?, ?);");
+
+        foreach ($grados as $grado) {
+            $resultado = $sentencia->execute([$nivel_educativo, $grado, $jornada_id_jornada]);
+
+
+            if (!$resultado) {
+                $base_de_datos->rollBack();
+                echo "Algo salió mal al insertar el grado $grado. La transacción ha sido cancelada.";
+                exit;
+            }
+        }
+
+        // Si todo salió bien, confirmar la transacción
+        $base_de_datos->commit();
+        echo " Guardados correctamente.";
     }
 }
 catch (PDOException $e) {
-    // Capturar y mostrar cualquier error que ocurra
+    // Capturar cualquier error y mostrar el mensaje correspondiente
     echo "Error: " . $e->getMessage();
 }
 ?>

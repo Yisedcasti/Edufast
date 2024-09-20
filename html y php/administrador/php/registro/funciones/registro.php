@@ -8,51 +8,90 @@ $roles = $base_de_datos->query("SELECT * FROM rol")->fetchAll(PDO::FETCH_ASSOC);
 $jornadas = $base_de_datos->query("SELECT * FROM jornada")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Coordinador</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../css/registro.css"> 
-</head>
-<body>
-<header class="navbar navbar-expand-lg bg-body-tertiary shadow">
-    <div class="container d-flex justify-content-between align-items-left">
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2" href="#">
-            <img src="../../../imagenes/logo.png" alt="Logo" width="68" height="68" class="d-inline-block align-text-top">
-            <span class="text-dark">EDUFAST</span>
-        </a>
-        <!-- Boton Responsive -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<html lang="en">
 
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto fs-5">
-        <li class="nav-item">
-          <a class="nav-link" href="../../../admin/pag_principal.php">Volver</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Registros
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="../view/registro_coordinador.php">Coordinador</a></li>
-            <li><a class="dropdown-item" href="../view/registro_profesor.php">Profesor</a></li>
-            <li><a class="dropdown-item" href="../view/registro_estudiante.php">Estudiante</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    </div>
-</header>
-    <section class="main-container ontainer-fluid">
-        <div class="containerRegistro row">
-            <div class="title col-md-12">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../../../css/registro.css"/>
+    <title>Registro</title>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+    <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
+            <div class="list-group list-group-flush my-3">
+
+                <a href="actividad.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Publicaciones</a>
+
+                <a href="curso.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Jornadas</a>
+
+                <a href="../../grados/vistas/grados.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Grados</a>
+
+                <a href="../php/cursos/vistas/cursos.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
+
+                <a href="logro.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asisitencias</a>
+
+                <a href="materia.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Materias</a>
+
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Logros</a>
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Actividades</a>
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Notas</a>
+                <a href="../../../admin/pag_principal.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Volver</a>
+            </div>
+        </div>
+
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Bienvenido</h2>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>Registros
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="../coordinador/view/registro_coordinador.php">Coordinadores</a></li>
+                                <li><a class="dropdown-item" href="../profesor/view/registro_profesor.php">Profesores</a></li>
+                                <li><a class="dropdown-item" href="../estudiantes/view/registro_estudiante.php">Estudaintes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>Maria Camila Torres Jaramillo
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+			<div class="container mt-5">
+                <div class="row">
+                    <div class="containerRegistro">
+            <div class="title col-md-10">
                 <h2>REGISTRAR</h2>
                 <form method="post" action="registrarUsuario.php">
                     <div class="formGroup">
@@ -117,15 +156,33 @@ $jornadas = $base_de_datos->query("SELECT * FROM jornada")->fetchAll(PDO::FETCH_
                 </form>
             </div>
         </div>
-    </section>
-    <footer class="footer-bottom">
-        <p>Copyright &copy;2024 codeOpacity. Designed by <span>EDUFAST</span></p>
-        <footer class="socials">
-            <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/plumapaulista/" class="icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://x.com/Cedidsanpablo" class="icon"><i class="fab fa-twitter"></i></a>
-        </footer>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+<footer class="footer-bottom bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">©2024 codeOpacity. Designed by <span>EDUFAST</span></p>
+        <div class="socials d-flex justify-content-center mt-2">
+            <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/plumapaulista/" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Cedidsanpablo" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:cedidsanpablobosa7@educacionbogota.edu.co" class="text-white mx-2"><i class="fab fa-google"></i></a>
+        </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- /#page-content-wrapper -->
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
 </body>
+
 </html>

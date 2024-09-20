@@ -1,30 +1,5 @@
 <?php
-if (!isset($_GET["id"])) {
-    exit("¡ID no especificado!");
-}
-
-$id = $_GET["id"];
-include_once "../configuracion/conexion.php";
-
-try {
-    // Consulta para obtener los datos del usuario
-    $sentencia = $base_de_datos->prepare("
-        SELECT * FROM registro
-        INNER JOIN rol ON registro.id_rol = rol.id_rol
-        INNER JOIN jornada ON registro.id_jornada = jornada.id_jornada
-        WHERE registro.num_doc = ?
-    ");
-    $sentencia->execute([$id]);
-    $persona = $sentencia->fetch(PDO::FETCH_OBJ);
-    $grados = $base_de_datos->query("SELECT * FROM grado")->fetchAll(PDO::FETCH_OBJ);
-    $cursos = $base_de_datos->query("SELECT * FROM curso")->fetchAll(PDO::FETCH_OBJ);
-
-    if ($persona === FALSE) {
-        exit("¡No existe ninguna persona con ese ID!");
-    }
-} catch (PDOException $e) {
-    exit("Error: " . $e->getMessage());
-}
+include_once "perfilconsulta.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +46,14 @@ try {
                 <label>Jornada</label>
                 <p><?php echo htmlspecialchars($persona->jornada); ?></p>
 </div>
+<div class="form-group">
+                <label>Grado</label>
+                <p><?php echo htmlspecialchars($persona->grado ); ?></p>
+            </div>
+            <div class="form-group">
+                <label>curso</label>
+                <p><?php echo htmlspecialchars($persona->curso); ?></p>
+            </div>
             <div class="form-group">
                 <label>Número de documento</label>
                 <p><?php echo htmlspecialchars($persona->num_doc); ?></p>

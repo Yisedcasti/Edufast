@@ -1,42 +1,6 @@
 <?php
-if (!isset($_GET["id"])) {
-    exit("¡ID no especificado!");
-}
-
-$id = $_GET["id"];
-include_once "../configuracion/conexion.php";
-
-try {
-    // Consulta para obtener los datos del usuario
-    $sentencia = $base_de_datos->prepare("
-    SELECT * FROM registro
-    INNER JOIN rol ON registro.id_rol = rol.id_rol
-    INNER JOIN jornada ON registro.id_jornada = jornada.id_jornada
-    WHERE registro.num_doc = ?
-");
-    $sentencia->execute([$id]);
-    $persona = $sentencia->fetch(PDO::FETCH_OBJ);
-
-    if ($persona === FALSE) {
-        exit("¡No existe ninguna persona con ese ID!");
-    }
-
-    // Obtener todas las opciones de roles
-    $sentenciaRoles = $base_de_datos->query("SELECT * FROM rol");
-    $roles = $sentenciaRoles->fetchAll(PDO::FETCH_OBJ);
-
-    // Obtener todas las opciones de jornadas
-    $sentenciaJornadas = $base_de_datos->query("SELECT * FROM jornada");
-    $jornadas = $sentenciaJornadas->fetchAll(PDO::FETCH_OBJ);
-
-    $grados = $base_de_datos->query("SELECT * FROM grado")->fetchAll(PDO::FETCH_OBJ);
-    $cursos = $base_de_datos->query("SELECT * FROM curso")->fetchAll(PDO::FETCH_OBJ);
-
-} catch (PDOException $e) {
-    exit("Error: " . $e->getMessage());
-}
+include_once "actualiconsulta.php"
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,7 +64,9 @@ try {
     <label for="id_grado" class="form-label">Grado</label>
     <select class="form-control" name="id_grado" id="id_grado" required>
         <?php foreach ($grados as $grado): ?>
-            <option value="<?= $grado->id_grado ?>"><?= $grado->grado ?></option>
+            <option value="<?= $grado->id_grado ?>" <?= $grado->id_grado == $persona->id_grado ? 'selected' : '' ?>>
+                <?= $grado->grado ?>
+            </option>
         <?php endforeach; ?>
     </select>
 </div>
@@ -108,7 +74,9 @@ try {
     <label for="id_curso" class="form-label">Curso</label>
     <select class="form-control" name="id_curso" id="id_curso" required>
         <?php foreach ($cursos as $curso): ?>
-            <option value="<?= $curso->id_curso ?>"><?= $curso->curso ?></option>
+            <option value="<?= $curso->id_curso ?>" <?= $curso->id_curso == $persona->id_curso ? 'selected' : '' ?>>
+                <?= $curso->curso ?>
+            </option>
         <?php endforeach; ?>
     </select>
 </div>

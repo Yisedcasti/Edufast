@@ -1,59 +1,91 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css');
 body {
     margin: 0;
     padding: 0;
     font-family: serif;
-    display: flex;
     background-color: #EAF4F4;
+    background: linear-gradient(to bottom left,#bcd8e4, #849cca);
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
- 
-.containernav {
-    width: 100%;
-    height: 75px;
-    background: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 3rem; 
-    box-sizing: border-box;
-    position: sticky;
-    z-index: 1000;
-}
- 
-.logo {
-    display: flex;
-    align-items: center;
-}
- 
-.logo img {
-    width: 68px;
-    height: 68px;
-    margin-right: 10px;
-}
- 
-.logo h2 {
-    font-family: 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
-    font-size: 30px;
-    color: #f1f1f1;
-    margin: 0;
-}
 
-.item-options{
-    font-size: 17px;
-    font-family: serif;
-	text-transform: uppercase;
-	color: white;
-    margin: 0 9px;
-	text-decoration: none;
-	line-height: 50px;
-	position: relative;
-	z-index: 1;
-	display: inline-block;
-	text-align: center;
-}
+:root {
+	--main-bg-color: #009d63;
+	--main-text-color: #009d63;
+	--second-text-color: #76787c;
+	--second-bg-color: #c1efde;
+  }
+  
+  .primary-text {
+	color: var(--main-text-color);
+  }
+  
+  .second-text {
+	color: var(--second-text-color);
+  }
 
-.main-container {
+  
+  .primary-bg {
+	background-color: var(--main-bg-color);
+  }
+  
+  .secondary-bg {
+	background-color: var(--second-bg-color);
+  }
+  
+  .rounded-full {
+	border-radius: 100%;
+  }
+  
+  #wrapper {
+	overflow-x: hidden;
+    background: linear-gradient(to bottom left,#bcd8e4, #849cca);
+  }
+  
+  #sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	-webkit-transition: margin 0.25s ease-out;
+	-moz-transition: margin 0.25s ease-out;
+	-o-transition: margin 0.25s ease-out;
+	transition: margin 0.25s ease-out;
+  }
+  
+  #sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+  }
+  
+  #sidebar-wrapper .list-group {
+	width: 15rem;
+  }
+  
+  #page-content-wrapper {
+	min-width: 100vw;
+  }
+  
+  #wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+  }
+  
+  #menu-toggle {
+	cursor: pointer;
+  }
+  
+  .list-group-item {
+	border: none;
+	padding: 20px 30px;
+  }
+  
+  .list-group-item.active {
+	background-color: transparent;
+	color: var(--main-text-color);
+	font-weight: bold;
+	border: none;
+  }
+
+  .main-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -69,6 +101,7 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, 20rem);
     gap: 10px;
+    margin:5% 0% 5% 7% ;
 }
 
 h2 {
@@ -77,16 +110,6 @@ h2 {
     font-size: 45px;
 }
 
-.tabla {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    margin-left: 5%;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    border-radius: 8px;
-    overflow: hidden; 
-}
 
 th, td {
     padding: 12px 0px ;
@@ -96,7 +119,7 @@ th, td {
     text-align: center;
 }
 
-th {
+.table th {
     background-color: #7f7b82;
     color: white;
     font-family: serif;
@@ -151,46 +174,59 @@ tr:hover {
 }
 
 
-
 .socials {
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
- 
+
 .socials a {
     text-decoration: none;
     color: #fff;
 }
- 
+
 .socials a i {
     font-size: 17px;
     padding: 0px 20px;
     transition: color .4s ease;
 }
- 
+
 .socials a:hover i {
     color: hsl(274, 100%, 51%);
 }
- 
+
 .footer-bottom {
     background: #000;
     width: 100%; 
     padding: 20px 0;
     text-align: center;
-    margin: 0 auto;
 }
- 
+
 .footer-bottom p {
     font-size: 14px;
     color: white;
     word-spacing: 2px;
     text-transform: capitalize;
 }
- 
+
 .footer-bottom span {
     text-transform: uppercase;
     opacity: .4;
     font-weight: 200;
 }
+
+@media (min-width: 768px) {
+	#sidebar-wrapper {
+	  margin-left: 0;
+	}
+  
+	#page-content-wrapper {
+	  min-width: 0;
+	  width: 100%;
+	}
+  
+	#wrapper.toggled #sidebar-wrapper {
+	  margin-left: -15rem;
+	}
+  }

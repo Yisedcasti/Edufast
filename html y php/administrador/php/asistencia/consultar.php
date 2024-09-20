@@ -1,0 +1,19 @@
+<?php
+include_once "conexion.php";
+
+// Realiza la consulta a la base de datos
+try {
+    $sentencia = $base_de_datos->prepare("
+       SELECT asistencia.*, registro.*
+           FROM asistencia 
+            INNER JOIN registro ON asistencia.registro_num_doc = registro.num_doc
+
+    ");
+    $sentencia->execute();
+    $asistencia = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $registro = $base_de_datos->query("SELECT * FROM registro")->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+    exit();
+}
+?>

@@ -3,43 +3,75 @@ include_once "consultar.php"; // Incluye el archivo de consulta
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../../css/jornadas.css"> <!-- Tu archivo CSS personalizado -->
-    <title>Jornadas</title>
-</head>
-<body>
-    <!-- Barra de navegación -->
-    <header class="navbar navbar-expand-lg bg-body-tertiary shadow">
-        <div class="container d-flex justify-content-between align-items-center">
-            <!-- Logo -->
-            <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2" href="#">
-                <img src="../../../imagenes/logo.png" alt="Logo" width="68" height="68" class="d-inline-block align-text-top">
-                <span class="text-dark">EDUFAST</span>
-            </a>
-            <!-- Botón responsive -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <!-- Menú -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../../admin/pag_principal.php">Volver</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../funciones/jornadasCrear.php">Crear</a>
-                    </li>
-                </ul>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../../../css/jornadas.css"/>
+    <title>jornadas</title>
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+    <div class="bg-white" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
+            <div class="list-group list-group-flush my-3">
+
+                <a href="actividad.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Publicaciones</a>
+
+                <a href="asistencia.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Registro</a>
+
+                <a href="curso.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Jornadas</a>
+
+                <a href="grado.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Grados</a>
+
+                <a href="jornada.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
+
+                <a href="logro.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asisitencias</a>
+
+                <a href="materia.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Materias</a>
+
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Logros</a>
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Actividades</a>
+                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Notas</a>
+                <a href="../../../admin/pag_principal.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Volver</a>
             </div>
         </div>
-    </header>
 
-    <main class="container mt-5">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Bienvenido</h2>
+                </div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>Maria Camila Torres Jaramillo
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+			<div class="container mt-5">
+                <div class="row">
+                <main class="container mt-5">
         <h1 class="text-center mb-4">Gestión de Jornadas</h1>
 
         <!-- Verificar si hay jornadas -->
@@ -66,8 +98,8 @@ include_once "consultar.php"; // Incluye el archivo de consulta
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center ">
-                                    <a href="<?php echo "../funciones/jornadasActualizar.php?id=" . $jornada->id_jornada ?>" class="btn btn-dark">Actualizar</a>
-                                    <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $jornada->id_jornada ?>">Eliminar</a>
+                                <a  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#actualizar<?php echo $jornada->id_jornada?>">Actualizar</a>
+                                <a  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $jornada->id_jornada ?>">Eliminar</a>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +109,100 @@ include_once "consultar.php"; // Incluye el archivo de consulta
         <?php else : ?>
             <p class="text-center">No se encontraron jornadas.</p>
         <?php endif; ?>
+        <div class="d-flex justify-content-center ">
+        <a class="btn btn-dark mb-4" type="button"  data-bs-toggle="modal" data-bs-target="#crear">Crear Actividad</a>
+        </div>
+
+        <!-- MODEL CREAR-->
+<div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Actividad</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <header>
+            <h1>Actualizar jornada</h1>
+        </header>
+        <form class="formulario" action="../funciones/crear.php" method="POST">
+            <section class="jornada">
+            <label for="jornada">Jornada</label>
+                        <select name="jornada" id="jornada" required>
+                            <option value="Mañana">Mañana</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noche">Noche</option>
+                            <option value="Unica">Unica</option>
+                        </select>
+            </section>
+
+            <section class="time">
+                <label for="hora_inicio">Hora de Inicio:</label>
+                <input type="time" id="hora_inicio" name="hora_inicio" >
+            </section>
+
+            <section class="time">
+                <label for="hora_final">Hora Final:</label>
+                <input type="time" id="hora_final" name="hora_final" >
+            </section>
+
+            <section class="btn">
+                <input type="submit" name="insertar" value="Crear">
+            </section>
+        </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+
+        
+        <!-- MODEL ACTUALIZAR-->
+        
         <?php foreach($jornadas as $jornada): ?>
-            <!-- Modal de confirmación -->
+            <div class="modal fade" id="actualizar<?php echo $jornada->id_jornada ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Actualizar jornada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <form class="formulario" action="../funciones/actualizar.php" method="POST">
+            <input type="hidden" name="id_jornada" value="<?= $jornada->id_jornada ?>">
+
+            <section class="jornada">
+                <label>Jornadas</label>
+                <select id="jornada" name="jornada">
+                    <option <?= $jornada->jornada == 'Mañana'? 'selected' : '' ?>>Mañana</option>
+                    <option <?= $jornada->jornada == 'Tarde' ? 'selected' : '' ?>>Tarde</option>
+                    <option <?= $jornada->jornada == 'Noche' ? 'selected' : '' ?>>Noche</option>
+                    <option <?= $jornada->jornada == 'Unica' ? 'selected' : '' ?>>Unica</option>
+                </select>
+            </section>
+
+            <section class="time">
+                <label for="hora_inicio">Hora de Inicio:</label>
+                <input type="time" id="hora_inicio" name="hora_inicio" value="<?= $jornada->hora_inicio ?>">
+            </section>
+
+            <section class="time">
+                <label for="hora_final">Hora Final:</label>
+                <input type="time" id="hora_final" name="hora_final" value="<?= $jornada->hora_final ?>">
+            </section>
+
+            <section class="btn">
+                <input type="submit" name="insertar" value="Actualizar">
+            </section>
+        </form>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>
+            
+        <!-- Modal de ELIMINACIÓN -->
+        <?php foreach($jornadas as $jornada): ?>
             <div class="modal fade" id="confirmarModal<?php echo $jornada->id_jornada ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -101,19 +225,33 @@ include_once "consultar.php"; // Incluye el archivo de consulta
             </div>
         <?php endforeach; ?>
     </main>
+                </div>
+            </div>
 
-    <!-- Footer -->
-    <footer class="footer-bottom">
-        <p>copyright &copy;2024 codeOpacity. designed by <span>EDUFAST</span></p>
-        <footer class="socials">
-            <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/plumapaulista/" class="icon"><i class="fab fa-instagram"></i></a>
-            <a href="https://x.com/Cedidsanpablo" class="icon"><i class="fab fa-twitter"></i></a>
-            <a href="mailto:cedidsanpablobosa7@educacionbogota.edu.co" class="icon"><i class="fab fa-google"></i></a>
-        </footer>
+            </div>
+        </div>
+    </div>
+<footer class="footer-bottom bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">©2024 codeOpacity. Designed by <span>EDUFAST</span></p>
+        <div class="socials d-flex justify-content-center mt-2">
+            <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/plumapaulista/" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Cedidsanpablo" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:cedidsanpablobosa7@educacionbogota.edu.co" class="text-white mx-2"><i class="fab fa-google"></i></a>
+        </div>
     </footer>
+    <!-- /#page-content-wrapper -->
+    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        var el = document.getElementById("wrapper");
+        var toggleButton = document.getElementById("menu-toggle");
+
+        toggleButton.onclick = function () {
+            el.classList.toggle("toggled");
+        };
+    </script>
 </body>
+
 </html>

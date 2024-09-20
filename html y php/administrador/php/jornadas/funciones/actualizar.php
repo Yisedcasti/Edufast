@@ -10,6 +10,7 @@ try {
         $hora_inicio = $_POST["hora_inicio"];
         $hora_final = $_POST["hora_final"];
 
+        
         // Preparar la consulta SQL para actualizar los datos
         $sentencia = $base_de_datos->prepare("
             UPDATE jornada 

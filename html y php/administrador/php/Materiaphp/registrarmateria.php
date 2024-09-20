@@ -1,10 +1,16 @@
 <?php
-if(!isset($_POST["materia"]) || !isset($_POST["id_materia"])) exit();
+
 include_once"conexion.php";
+
 $materia=$_POST["materia"];
-$id_materia=$_POST["id_materia"];
-$sentencia = $base_de_datos->prepare("INSERT INTO materia (materia,id_materia) VALUES (?,?);");
-$resultado =  $sentencia->execute([$materia,$id_materia]);
+
+$materiaregistro = $base_de_datos->prepare("INSERT INTO materia_registro (id_materia,num_doc) VALUES (?);");
+$resultado =  $sentencia->execute([$materia,$registro_num_doc]);
+
+$sentencia = $base_de_datos->prepare("INSERT INTO materia (materia) VALUES (?);");
+$resultado =  $sentencia->execute([$materia]);
+
+
 if($resultado === TRUE){ echo'<script>  alert("Insertado correctamente");
  window.location.href = "materia.php";</script>';
 }

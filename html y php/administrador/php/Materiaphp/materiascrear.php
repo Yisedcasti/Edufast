@@ -44,14 +44,10 @@
         <form action="registrarmateria.php" method="POST">
             <header><h1>Crear Materia</h1></header>
             <section class="datos">
-                <label for="materia">id Materia:</label>
-                <input type="number" id="materia" name="id_materia" placeholder="Ingrese el codigo de la materia">
-            </section>
-
-            <section class="datos">
                 <label for="materia">Nombre de la Materia:</label>
                 <input type="text" id="materia" name="materia" placeholder="Ingrese el nombre de la materia" required>
             </section>
+            
 
             <button type="submit">Asignar Materia</button>
         </form>

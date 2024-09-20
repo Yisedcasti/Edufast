@@ -62,7 +62,7 @@ include_once "consultar.php";
           </section>
 
 
-<!-- Modal -->
+<!-- actualizar -->
 <?php foreach($actividades as $actividad): ?>
 <div class="modal fade" id="actualizarModal<?php echo $actividad->id_actividad ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
