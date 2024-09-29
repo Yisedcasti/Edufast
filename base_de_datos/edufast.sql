@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 02:43:30
+-- Tiempo de generación: 29-09-2024 a las 03:26:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -398,6 +398,13 @@ CREATE TABLE `curso` (
   `grado_jornada_id_jornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `curso`, `grado_id_grado`, `grado_jornada_id_jornada`) VALUES
+(15, '605', 24, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -558,13 +565,13 @@ CREATE TABLE `publicaion_registro` (
 CREATE TABLE `registro` (
   `num_doc` int(11) NOT NULL,
   `tipo_doc` varchar(15) NOT NULL,
-  `imagen` varchar(1000) NOT NULL,
+  `imagen` varchar(1000) DEFAULT NULL,
   `celular` varchar(45) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `correo` varchar(45) NOT NULL,
   `usuario` varchar(45) NOT NULL,
-  `contraseña` varchar(45) NOT NULL,
+  `contraseña` varbinary(255) DEFAULT NULL,
   `id_rol` int(11) NOT NULL,
   `id_jornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -574,10 +581,25 @@ CREATE TABLE `registro` (
 --
 
 INSERT INTO `registro` (`num_doc`, `tipo_doc`, `imagen`, `celular`, `nombre`, `apellido`, `correo`, `usuario`, `contraseña`, `id_rol`, `id_jornada`) VALUES
-(109876542, 'TI', '', '3213675466', 'yised', 'castiblanco', 'alex@gmail.com', 'yised', '$2y$10$0QKOjgHeo2ssFK2uYvRzieMv.qdUIB6cMJSpVT', 2, 1),
-(123456789, 'TI', '', '3213456788', 'Alan', 'Osuna', 'alex@gmail.com', 'profe123', '$2y$10$0Kc0JrFtrpmUMB8TrNsGxeZpiGcDfidA.GrsqR', 3, 1),
-(1012897654, 'TI', '', '3213675466', 'cristiam', 'Cadena', 'cristiam@gmail.com', 'cris', '$2y$10$ww/WABMYLG1mkAM2pVs99.S8NM4c4G4NSebRT4', 4, 1),
-(2147483647, 'TI', '', '3213675466', 'Alex', 'Osuna', 'alex@gmail.com', 'AlexOsuna', '$2y$10$lJLYD538jpeN3dIzCFBySurn/5j9Q2cyVIstEo', 2, 1);
+(12345678, 'CC', 'ruta/imagen.png', '1234567890', 'Juan', 'Pérez', 'juan.perez@example.com', 'juanp', 0xd3616a06faeb8aca2e491047bf91a5dd, 1, 1),
+(1141114912, 'TI', NULL, '3213675466', 'JUlian', 'Lozano', 'Julian@gmail.com', 'Diablo', 0xafc1f4a797cce373af65cb09e193dd48, 1, 6),
+(1141114956, 'CC', NULL, '3213679766', 'Dayana', 'aaaa', 'a@gmail.com', 'lara', 0x323334, 2, 6);
+
+--
+-- Disparadores `registro`
+--
+DELIMITER $$
+CREATE TRIGGER `before_insert_registro` BEFORE INSERT ON `registro` FOR EACH ROW BEGIN
+  SET NEW.contraseña = AES_ENCRYPT(NEW.contraseña, 'llave_secreta');
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_update_registro` BEFORE UPDATE ON `registro` FOR EACH ROW BEGIN
+  SET NEW.contraseña = AES_ENCRYPT(NEW.contraseña, 'llave_secreta');
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -1078,7 +1100,7 @@ ALTER TABLE `actividad`
 -- AUTO_INCREMENT de la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
-  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencia`
@@ -1090,7 +1112,7 @@ ALTER TABLE `asistencia`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
