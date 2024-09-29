@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 03:26:11
+-- Tiempo de generación: 29-09-2024 a las 03:48:03
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -30,13 +30,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `create_actividad` (IN `p_actividad`
     VALUES (p_actividad, p_descripcion_actividad, p_codigo_logro);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `create_asignacion` (IN `p_registro_num_doc` INT, IN `p_regitro_rol_id_rol` INT, IN `p_registo_jornada_id_jornada` INT, IN `p_grado_id_grado` INT, IN `p_grado_jornada_id_jornada` INT, IN `p_curso_id_curso` INT, IN `p_curso_gradoo_id_grado` INT, IN `p_curso_grado_jornada_id_jornada` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `create_asignacion` (IN `p_registro_num_doc` INT, IN `p_regitro_rol_id_rol` INT, IN `p_registo_jornada_id_jornada` INT, IN `p_curso_id_curso` INT, IN `p_curso_gradoo_id_grado` INT, IN `p_curso_grado_jornada_id_jornada` INT)   BEGIN
     INSERT INTO asignacion (
         registro_num_doc, 
         regitro_rol_id_rol, 
         registo_jornada_id_jornada, 
-        grado_id_grado, 
-        grado_jornada_id_jornada, 
         curso_id_curso, 
         curso_gradoo_id_grado, 
         curso_grado_jornada_id_jornada
@@ -45,8 +43,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `create_asignacion` (IN `p_registro_
         p_registro_num_doc, 
         p_regitro_rol_id_rol, 
         p_registo_jornada_id_jornada, 
-        p_grado_id_grado, 
-        p_grado_jornada_id_jornada, 
         p_curso_id_curso, 
         p_curso_gradoo_id_grado, 
         p_curso_grado_jornada_id_jornada
@@ -187,14 +183,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_actividad` (IN `p_id_activid
     WHERE id_actividad = p_id_actividad;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `update_asignacion` (IN `p_id_asignacion` INT, IN `p_registro_num_doc` INT, IN `p_regitro_rol_id_rol` INT, IN `p_registo_jornada_id_jornada` INT, IN `p_grado_id_grado` INT, IN `p_grado_jornada_id_jornada` INT, IN `p_curso_id_curso` INT, IN `p_curso_gradoo_id_grado` INT, IN `p_curso_grado_jornada_id_jornada` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_asignacion` (IN `p_id_asignacion` INT, IN `p_registro_num_doc` INT, IN `p_regitro_rol_id_rol` INT, IN `p_registo_jornada_id_jornada` INT, IN `p_curso_id_curso` INT, IN `p_curso_gradoo_id_grado` INT, IN `p_curso_grado_jornada_id_jornada` INT)   BEGIN
     UPDATE asignacion 
     SET 
         registro_num_doc = p_registro_num_doc, 
         regitro_rol_id_rol = p_regitro_rol_id_rol, 
         registo_jornada_id_jornada = p_registo_jornada_id_jornada, 
-        grado_id_grado = p_grado_id_grado, 
-        grado_jornada_id_jornada = p_grado_jornada_id_jornada, 
         curso_id_curso = p_curso_id_curso, 
         curso_gradoo_id_grado = p_curso_gradoo_id_grado, 
         curso_grado_jornada_id_jornada = p_curso_grado_jornada_id_jornada
