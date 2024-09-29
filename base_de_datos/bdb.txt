@@ -672,8 +672,6 @@ CREATE PROCEDURE create_asignacion(
     IN p_registro_num_doc INT,
     IN p_regitro_rol_id_rol INT,
     IN p_registo_jornada_id_jornada INT,
-    IN p_grado_id_grado INT,
-    IN p_grado_jornada_id_jornada INT,
     IN p_curso_id_curso INT,
     IN p_curso_gradoo_id_grado INT,
     IN p_curso_grado_jornada_id_jornada INT
@@ -683,8 +681,6 @@ BEGIN
         registro_num_doc, 
         regitro_rol_id_rol, 
         registo_jornada_id_jornada, 
-        grado_id_grado, 
-        grado_jornada_id_jornada, 
         curso_id_curso, 
         curso_gradoo_id_grado, 
         curso_grado_jornada_id_jornada
@@ -693,8 +689,6 @@ BEGIN
         p_registro_num_doc, 
         p_regitro_rol_id_rol, 
         p_registo_jornada_id_jornada, 
-        p_grado_id_grado, 
-        p_grado_jornada_id_jornada, 
         p_curso_id_curso, 
         p_curso_gradoo_id_grado, 
         p_curso_grado_jornada_id_jornada
@@ -706,8 +700,6 @@ CREATE PROCEDURE update_asignacion(
     IN p_registro_num_doc INT,
     IN p_regitro_rol_id_rol INT,
     IN p_registo_jornada_id_jornada INT,
-    IN p_grado_id_grado INT,
-    IN p_grado_jornada_id_jornada INT,
     IN p_curso_id_curso INT,
     IN p_curso_gradoo_id_grado INT,
     IN p_curso_grado_jornada_id_jornada INT
@@ -718,8 +710,6 @@ BEGIN
         registro_num_doc = p_registro_num_doc, 
         regitro_rol_id_rol = p_regitro_rol_id_rol, 
         registo_jornada_id_jornada = p_registo_jornada_id_jornada, 
-        grado_id_grado = p_grado_id_grado, 
-        grado_jornada_id_jornada = p_grado_jornada_id_jornada, 
         curso_id_curso = p_curso_id_curso, 
         curso_gradoo_id_grado = p_curso_gradoo_id_grado, 
         curso_grado_jornada_id_jornada = p_curso_grado_jornada_id_jornada
