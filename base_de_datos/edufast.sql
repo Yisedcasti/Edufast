@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 02:12:47
+-- Tiempo de generación: 29-09-2024 a las 02:43:30
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -617,6 +617,21 @@ CREATE TABLE `view_actividad` (
 
 -- --------------------------------------------------------
 
+--
+-- Estructura Stand-in para la vista `view_asignacion`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `view_asignacion` (
+`id_asignacion` int(11)
+,`registro_num_doc` int(11)
+,`registro_rol_id_rol` int(11)
+,`registo_jornada_id_jornada` int(11)
+,`curso_id_curso` int(11)
+,`curso_grado_id_grado` int(11)
+,`curso_grado_jornada_id_jornada` int(11)
+);
+
+-- --------------------------------------------------------
 
 --
 -- Estructura Stand-in para la vista `view_asistencia`
@@ -808,7 +823,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_asignacion`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_asignacion`  AS SELECT `asignacion`.`id_asignacion` AS `id_asignacion`, `asignacion`.`registro_num_doc` AS `registro_num_doc`, `asignacion`.`registro_rol_id_rol` AS `registro_rol_id_rol`, `asignacion`.`registo_jornada_id_jornada` AS `registo_jornada_id_jornada`, `asignacion`.`grado_id_grado` AS `grado_id_grado`, `asignacion`.`grado_jornada_id_jornada` AS `grado_jornada_id_jornada`, `asignacion`.`curso_id_curso` AS `curso_id_curso`, `asignacion`.`curso_grado_id_grado` AS `curso_grado_id_grado`, `asignacion`.`curso_grado_jornada_id_jornada` AS `curso_grado_jornada_id_jornada` FROM `asignacion` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_asignacion`  AS SELECT `a`.`id_asignacion` AS `id_asignacion`, `a`.`registro_num_doc` AS `registro_num_doc`, `a`.`registro_rol_id_rol` AS `registro_rol_id_rol`, `a`.`registo_jornada_id_jornada` AS `registo_jornada_id_jornada`, `a`.`curso_id_curso` AS `curso_id_curso`, `a`.`curso_grado_id_grado` AS `curso_grado_id_grado`, `a`.`curso_grado_jornada_id_jornada` AS `curso_grado_jornada_id_jornada` FROM `asignacion` AS `a` ;
 
 -- --------------------------------------------------------
 
