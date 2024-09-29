@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2024 a las 03:00:52
+-- Tiempo de generación: 29-09-2024 a las 02:12:47
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -346,6 +346,14 @@ CREATE TABLE `actividad` (
   `logro_materia_id_materia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `actividad`
+--
+
+INSERT INTO `actividad` (`id_actividad`, `nom_actividad`, `descrip_actividad`, `fecha_entrega`, `logro_Codigo_logro`, `logro_materia_id_materia`) VALUES
+(4, 'Sql', 'Cree una base de datos con dos tablas las cuales tengan una relaciòn de muchos a uno ', '2024-09-26', 8763, 1),
+(5, ' php', 'Crear un archivo el cual mande los datos cuando se registras a otra pagina donde se van a mostrar', '2024-09-12', 8763, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -357,8 +365,6 @@ CREATE TABLE `asignacion` (
   `registro_num_doc` int(11) NOT NULL,
   `registro_rol_id_rol` int(11) NOT NULL,
   `registo_jornada_id_jornada` int(11) NOT NULL,
-  `grado_id_grado` int(11) NOT NULL,
-  `grado_jornada_id_jornada` int(11) NOT NULL,
   `curso_id_curso` int(11) NOT NULL,
   `curso_grado_id_grado` int(11) NOT NULL,
   `curso_grado_jornada_id_jornada` int(11) NOT NULL
@@ -405,6 +411,14 @@ CREATE TABLE `grado` (
   `jornada_id_jornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `grado`
+--
+
+INSERT INTO `grado` (`id_grado`, `nivel_educativo`, `grado`, `jornada_id_jornada`) VALUES
+(24, 'Bachillerato', '6°', 1),
+(25, 'Bachillerato', '7°', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -423,9 +437,9 @@ CREATE TABLE `jornada` (
 --
 
 INSERT INTO `jornada` (`id_jornada`, `jornada`, `hora_inicio`, `hora_final`) VALUES
-(1, 'Mañana', '06:00:00', '11:50:00'),
-(2, 'Tarde', '12:00:00', '17:50:00'),
-(3, 'Noche', '18:20:00', '22:00:00');
+(1, 'Tarde', '07:30:00', '11:50:00'),
+(6, 'Mañana', '06:00:00', '11:50:00'),
+(7, 'Noche', '18:20:00', '22:22:00');
 
 -- --------------------------------------------------------
 
@@ -440,6 +454,14 @@ CREATE TABLE `logro` (
   `id_materia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `logro`
+--
+
+INSERT INTO `logro` (`codigo_logro`, `nombre_logro`, `descrip_logro`, `id_materia`) VALUES
+(8763, 'analisis', 'analizar las bases de datos', 1),
+(8764, 'PHP', 'Analizar y saber como hacer php', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -450,6 +472,13 @@ CREATE TABLE `materia` (
   `id_materia` int(11) NOT NULL,
   `materia` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `materia`
+--
+
+INSERT INTO `materia` (`id_materia`, `materia`) VALUES
+(1, 'Español');
 
 -- --------------------------------------------------------
 
@@ -505,6 +534,7 @@ CREATE TABLE `publicacion` (
   `evento` varchar(50) NOT NULL,
   `fecha_evento` date NOT NULL,
   `informacion` varchar(200) NOT NULL,
+  `titulo` varchar(45) NOT NULL,
   `escritoPor` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -515,8 +545,8 @@ CREATE TABLE `publicacion` (
 --
 
 CREATE TABLE `publicaion_registro` (
-  `id_publicacion` int(11) NOT NULL,
-  `num_doc` int(11) NOT NULL
+  `num_doc` int(11) NOT NULL,
+  `id_publicacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -538,6 +568,16 @@ CREATE TABLE `registro` (
   `id_rol` int(11) NOT NULL,
   `id_jornada` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `registro`
+--
+
+INSERT INTO `registro` (`num_doc`, `tipo_doc`, `imagen`, `celular`, `nombre`, `apellido`, `correo`, `usuario`, `contraseña`, `id_rol`, `id_jornada`) VALUES
+(109876542, 'TI', '', '3213675466', 'yised', 'castiblanco', 'alex@gmail.com', 'yised', '$2y$10$0QKOjgHeo2ssFK2uYvRzieMv.qdUIB6cMJSpVT', 2, 1),
+(123456789, 'TI', '', '3213456788', 'Alan', 'Osuna', 'alex@gmail.com', 'profe123', '$2y$10$0Kc0JrFtrpmUMB8TrNsGxeZpiGcDfidA.GrsqR', 3, 1),
+(1012897654, 'TI', '', '3213675466', 'cristiam', 'Cadena', 'cristiam@gmail.com', 'cris', '$2y$10$ww/WABMYLG1mkAM2pVs99.S8NM4c4G4NSebRT4', 4, 1),
+(2147483647, 'TI', '', '3213675466', 'Alex', 'Osuna', 'alex@gmail.com', 'AlexOsuna', '$2y$10$lJLYD538jpeN3dIzCFBySurn/5j9Q2cyVIstEo', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -577,23 +617,6 @@ CREATE TABLE `view_actividad` (
 
 -- --------------------------------------------------------
 
---
--- Estructura Stand-in para la vista `view_asignacion`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `view_asignacion` (
-`id_asignacion` int(11)
-,`registro_num_doc` int(11)
-,`registro_rol_id_rol` int(11)
-,`registo_jornada_id_jornada` int(11)
-,`grado_id_grado` int(11)
-,`grado_jornada_id_jornada` int(11)
-,`curso_id_curso` int(11)
-,`curso_grado_id_grado` int(11)
-,`curso_grado_jornada_id_jornada` int(11)
-);
-
--- --------------------------------------------------------
 
 --
 -- Estructura Stand-in para la vista `view_asistencia`
@@ -913,30 +936,29 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 ALTER TABLE `actividad`
   ADD PRIMARY KEY (`id_actividad`),
-  ADD KEY `fk_lo` (`logro_Codigo_logro`),
-  ADD KEY `logro_materia_id_materia` (`logro_materia_id_materia`);
+  ADD KEY `logro_materia_id_materia` (`logro_materia_id_materia`),
+  ADD KEY `fk_lo` (`logro_Codigo_logro`);
 
 --
 -- Indices de la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
+  ADD PRIMARY KEY (`id_asignacion`),
   ADD UNIQUE KEY `registo_jornada_id_jornada` (`registo_jornada_id_jornada`),
   ADD KEY `registro_num_doc` (`registro_num_doc`),
   ADD KEY `registro_rol_id_rol` (`registro_rol_id_rol`),
-  ADD KEY `fk_logro` (`grado_id_grado`),
   ADD KEY `curso_id_curso` (`curso_id_curso`),
   ADD KEY `curso_grado_jornada_id_jornada` (`curso_grado_jornada_id_jornada`),
-  ADD KEY `curso_grado_id_grado` (`curso_grado_id_grado`),
-  ADD KEY `grado_jornada_id_jornada` (`grado_jornada_id_jornada`);
+  ADD KEY `curso_grado_id_grado` (`curso_grado_id_grado`);
 
 --
 -- Indices de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
   ADD PRIMARY KEY (`id_asistencia`),
+  ADD KEY `registro_jornada_id_jornada` (`registro_jornada_id_jornada`),
   ADD KEY `fk_r` (`registro_num_doc`),
-  ADD KEY `fk_rol2` (`registro_rol_id_rol`),
-  ADD KEY `registro_jornada_id_jornada` (`registro_jornada_id_jornada`);
+  ADD KEY `fk_rol2` (`registro_rol_id_rol`);
 
 --
 -- Indices de la tabla `curso`
@@ -976,29 +998,29 @@ ALTER TABLE `materia`
 -- Indices de la tabla `materia_curso`
 --
 ALTER TABLE `materia_curso`
-  ADD KEY `id_materia` (`id_materia`),
-  ADD KEY `id_curso` (`id_curso`);
+  ADD KEY `materia_curso_ibfk_1` (`id_materia`),
+  ADD KEY `materia_curso_ibfk_2` (`id_curso`);
 
 --
 -- Indices de la tabla `materia_registro`
 --
 ALTER TABLE `materia_registro`
-  ADD KEY `id_materia` (`id_materia`),
-  ADD KEY `num_doc` (`num_doc`),
-  ADD KEY `id_rol` (`id_rol`),
-  ADD KEY `id_jornada` (`id_jornada`);
+  ADD KEY `materia_registro_ibfk_1` (`id_materia`),
+  ADD KEY `materia_registro_ibfk_2` (`num_doc`),
+  ADD KEY `materia_registro_ibfk_3` (`id_rol`),
+  ADD KEY `materia_registro_ibfk_4` (`id_jornada`);
 
 --
 -- Indices de la tabla `nota`
 --
 ALTER TABLE `nota`
   ADD PRIMARY KEY (`id_nota`),
-  ADD KEY `fk_regis` (`registro_num_doc`),
-  ADD KEY `fk_ol` (`registro_rol_id_rol`),
   ADD KEY `registro_jornada_id_jornada` (`registro_jornada_id_jornada`),
   ADD KEY `actividades_id_actividades` (`actividades_id_actividades`),
   ADD KEY `actividades_logro_Codigo_logro` (`actividades_logro_Codigo_logro`),
-  ADD KEY `actividades_logro_materia_id_materias` (`actividades_logro_materia_id_materias`);
+  ADD KEY `actividades_logro_materia_id_materias` (`actividades_logro_materia_id_materias`),
+  ADD KEY `fk_ol` (`registro_rol_id_rol`),
+  ADD KEY `fk_regis` (`registro_num_doc`);
 
 --
 -- Indices de la tabla `publicacion`
@@ -1010,16 +1032,16 @@ ALTER TABLE `publicacion`
 -- Indices de la tabla `publicaion_registro`
 --
 ALTER TABLE `publicaion_registro`
-  ADD KEY `id_publicacion` (`id_publicacion`),
-  ADD KEY `num_doc` (`num_doc`);
+  ADD KEY `publicaion_registro_ibfk_1` (`num_doc`),
+  ADD KEY `publicaion_registro_ibfk_2` (`id_publicacion`);
 
 --
 -- Indices de la tabla `registro`
 --
 ALTER TABLE `registro`
   ADD PRIMARY KEY (`num_doc`),
-  ADD KEY `fk_rol` (`id_rol`),
-  ADD KEY `fk_jornada` (`id_jornada`);
+  ADD KEY `fk_jornada` (`id_jornada`),
+  ADD KEY `fk_rol` (`id_rol`);
 
 --
 -- Indices de la tabla `rol`
@@ -1035,7 +1057,13 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  MODIFY `id_actividad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `asignacion`
+--
+ALTER TABLE `asignacion`
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `asistencia`
@@ -1047,31 +1075,31 @@ ALTER TABLE `asistencia`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `grado`
 --
 ALTER TABLE `grado`
-  MODIFY `id_grado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_grado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de la tabla `jornada`
 --
 ALTER TABLE `jornada`
-  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jornada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `logro`
 --
 ALTER TABLE `logro`
-  MODIFY `codigo_logro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codigo_logro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8765;
 
 --
 -- AUTO_INCREMENT de la tabla `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `nota`
@@ -1099,89 +1127,87 @@ ALTER TABLE `rol`
 -- Filtros para la tabla `actividad`
 --
 ALTER TABLE `actividad`
-  ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`logro_materia_id_materia`) REFERENCES `logro` (`id_materia`),
-  ADD CONSTRAINT `fk_lo` FOREIGN KEY (`logro_Codigo_logro`) REFERENCES `logro` (`codigo_logro`);
+  ADD CONSTRAINT `actividad_ibfk_1` FOREIGN KEY (`logro_materia_id_materia`) REFERENCES `logro` (`id_materia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_lo` FOREIGN KEY (`logro_Codigo_logro`) REFERENCES `logro` (`codigo_logro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
-  ADD CONSTRAINT `asignacion_ibfk_1` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`),
-  ADD CONSTRAINT `asignacion_ibfk_2` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`),
-  ADD CONSTRAINT `asignacion_ibfk_3` FOREIGN KEY (`grado_jornada_id_jornada`) REFERENCES `grado` (`jornada_id_jornada`),
-  ADD CONSTRAINT `asignacion_ibfk_4` FOREIGN KEY (`curso_id_curso`) REFERENCES `curso` (`id_curso`),
-  ADD CONSTRAINT `asignacion_ibfk_5` FOREIGN KEY (`curso_grado_jornada_id_jornada`) REFERENCES `curso` (`grado_jornada_id_jornada`),
-  ADD CONSTRAINT `asignacion_ibfk_6` FOREIGN KEY (`curso_grado_id_grado`) REFERENCES `curso` (`grado_id_grado`),
-  ADD CONSTRAINT `asignacion_ibfk_7` FOREIGN KEY (`registo_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`),
-  ADD CONSTRAINT `fk_logro` FOREIGN KEY (`grado_id_grado`) REFERENCES `grado` (`id_grado`);
+  ADD CONSTRAINT `asignacion_ibfk_1` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asignacion_ibfk_2` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asignacion_ibfk_4` FOREIGN KEY (`curso_id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asignacion_ibfk_5` FOREIGN KEY (`curso_grado_jornada_id_jornada`) REFERENCES `curso` (`grado_jornada_id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asignacion_ibfk_6` FOREIGN KEY (`curso_grado_id_grado`) REFERENCES `curso` (`grado_id_grado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `asignacion_ibfk_7` FOREIGN KEY (`registo_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`registro_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`),
-  ADD CONSTRAINT `fk_r` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`),
-  ADD CONSTRAINT `fk_rol2` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`);
+  ADD CONSTRAINT `asistencia_ibfk_1` FOREIGN KEY (`registro_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_r` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rol2` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `curso`
 --
 ALTER TABLE `curso`
-  ADD CONSTRAINT `fk_grado` FOREIGN KEY (`grado_id_grado`) REFERENCES `grado` (`id_grado`),
-  ADD CONSTRAINT `fk_jornada2` FOREIGN KEY (`grado_jornada_id_jornada`) REFERENCES `grado` (`jornada_id_jornada`);
+  ADD CONSTRAINT `fk_grado` FOREIGN KEY (`grado_id_grado`) REFERENCES `grado` (`id_grado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_jornada2` FOREIGN KEY (`grado_jornada_id_jornada`) REFERENCES `grado` (`jornada_id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `grado`
 --
 ALTER TABLE `grado`
-  ADD CONSTRAINT `fk_jor` FOREIGN KEY (`jornada_id_jornada`) REFERENCES `jornada` (`id_jornada`);
+  ADD CONSTRAINT `fk_jor` FOREIGN KEY (`jornada_id_jornada`) REFERENCES `jornada` (`id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `logro`
 --
 ALTER TABLE `logro`
-  ADD CONSTRAINT `fk_materia_logro` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`);
+  ADD CONSTRAINT `fk_materia_logro` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `materia_curso`
 --
 ALTER TABLE `materia_curso`
-  ADD CONSTRAINT `materia_curso_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`),
-  ADD CONSTRAINT `materia_curso_ibfk_2` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`);
+  ADD CONSTRAINT `materia_curso_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materia_curso_ibfk_2` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `materia_registro`
 --
 ALTER TABLE `materia_registro`
-  ADD CONSTRAINT `materia_registro_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`),
-  ADD CONSTRAINT `materia_registro_ibfk_2` FOREIGN KEY (`num_doc`) REFERENCES `registro` (`num_doc`),
-  ADD CONSTRAINT `materia_registro_ibfk_3` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`),
-  ADD CONSTRAINT `materia_registro_ibfk_4` FOREIGN KEY (`id_jornada`) REFERENCES `jornada` (`id_jornada`);
+  ADD CONSTRAINT `materia_registro_ibfk_1` FOREIGN KEY (`id_materia`) REFERENCES `materia` (`id_materia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materia_registro_ibfk_2` FOREIGN KEY (`num_doc`) REFERENCES `registro` (`num_doc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materia_registro_ibfk_3` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materia_registro_ibfk_4` FOREIGN KEY (`id_jornada`) REFERENCES `jornada` (`id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `nota`
 --
 ALTER TABLE `nota`
-  ADD CONSTRAINT `fk_ol` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`),
-  ADD CONSTRAINT `fk_regis` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`),
-  ADD CONSTRAINT `nota_ibfk_1` FOREIGN KEY (`registro_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`),
-  ADD CONSTRAINT `nota_ibfk_2` FOREIGN KEY (`actividades_id_actividades`) REFERENCES `actividad` (`id_actividad`),
-  ADD CONSTRAINT `nota_ibfk_3` FOREIGN KEY (`actividades_logro_Codigo_logro`) REFERENCES `actividad` (`logro_Codigo_logro`),
-  ADD CONSTRAINT `nota_ibfk_4` FOREIGN KEY (`actividades_logro_materia_id_materias`) REFERENCES `actividad` (`logro_materia_id_materia`);
+  ADD CONSTRAINT `fk_ol` FOREIGN KEY (`registro_rol_id_rol`) REFERENCES `registro` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_regis` FOREIGN KEY (`registro_num_doc`) REFERENCES `registro` (`num_doc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nota_ibfk_1` FOREIGN KEY (`registro_jornada_id_jornada`) REFERENCES `registro` (`id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nota_ibfk_2` FOREIGN KEY (`actividades_id_actividades`) REFERENCES `actividad` (`id_actividad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nota_ibfk_3` FOREIGN KEY (`actividades_logro_Codigo_logro`) REFERENCES `actividad` (`logro_Codigo_logro`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `nota_ibfk_4` FOREIGN KEY (`actividades_logro_materia_id_materias`) REFERENCES `actividad` (`logro_materia_id_materia`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `publicaion_registro`
 --
 ALTER TABLE `publicaion_registro`
-  ADD CONSTRAINT `publicaion_registro_ibfk_1` FOREIGN KEY (`id_publicacion`) REFERENCES `publicacion` (`id_publicacion`),
-  ADD CONSTRAINT `publicaion_registro_ibfk_2` FOREIGN KEY (`num_doc`) REFERENCES `registro` (`num_doc`);
+  ADD CONSTRAINT `publicaion_registro_ibfk_1` FOREIGN KEY (`num_doc`) REFERENCES `registro` (`num_doc`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `publicaion_registro_ibfk_2` FOREIGN KEY (`id_publicacion`) REFERENCES `publicacion` (`id_publicacion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `registro`
 --
 ALTER TABLE `registro`
-  ADD CONSTRAINT `fk_jornada` FOREIGN KEY (`id_jornada`) REFERENCES `jornada` (`id_jornada`),
-  ADD CONSTRAINT `fk_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
+  ADD CONSTRAINT `fk_jornada` FOREIGN KEY (`id_jornada`) REFERENCES `jornada` (`id_jornada`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_rol` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
