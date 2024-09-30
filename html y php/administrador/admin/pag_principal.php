@@ -1,6 +1,3 @@
-<?php
-include_once "consulta.php"
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +7,15 @@ include_once "consulta.php"
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/nav.css"/>
     <link rel="stylesheet" href="../css/principal.css"/>
+  
     <title>Pagina Principal</title>
 </head>
-
 <body>
     <div class="d-flex" id="wrapper">
 
-        <div class="bg-white" id="sidebar-wrapper">
+        <div class="listado" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
             <div class="list-group list-group-flush my-3">
 
@@ -31,20 +29,20 @@ include_once "consulta.php"
 
                 <a href="../php/cursos/curso.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
 
-                <a href="logro.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asistencias</a>
+                <a href="../php/asistencia/asistencia.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asistencias</a>
 
                 <a href="../php/materiaphp/materia.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Materias</a>
 
-                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Logros</a>
-                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Actividades</a>
-                <a href="nota.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Notas</a>
+                <a href="../php/logrophp/logros.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Logros</a>
+                <a href="../php/actividad/actividad.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Actividades</a>
+                <a href="../php/notas/notas.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Notas</a>
             </div>
         </div>
 
         <div id="page-content-wrapper">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-align-left primary-text fs-4 me-3" id="menu-toggle"></i>
+                    <i class="fas fa-align-left fs-4 me-3" id="menu-toggle"></i>
                     <h2 class="fs-2 m-0">Bienvenido</h2>
                 </div>
 
@@ -94,7 +92,7 @@ include_once "consulta.php"
                         <i class="fas fa-user-plus fs-1"></i>
                         <h1 class="card-title">Registro</h1>
                     </div>
-                    <div class="card-footer text-center">
+                    <div class="card-footer text-center contenedor">
                         <a href="../php/registro/funciones/registro.php" class="btn btn-dark">Registrar</a>
                     </div>
                 </div>

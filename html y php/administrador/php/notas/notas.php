@@ -9,19 +9,19 @@ include_once "consulta.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="../../../css/grados.css"/>
-    <link rel="stylesheet" href="../../../css/nav.css"/>
+    <link rel="stylesheet" href="../../css/grados.css"/>
     <title>Grados</title>
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-    <div class="listado" id="sidebar-wrapper">
+    <div class="bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
             <div class="list-group list-group-flush my-3">
                 <a href="actividad.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Publicaciones</a>
                 <a href="asistencia.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Registro</a>
                 <a href="curso.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Jornadas</a>
+                <a href="grado.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Grados</a>
                 <a href="jornada.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
                 <a href="logro.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asisitencias</a>
                 <a href="materia.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Materias</a>
@@ -62,37 +62,46 @@ include_once "consulta.php";
                 <div class="row">
                 <main class="main-container">
         <section class="container">
-            <h2>Grados Existentes</h2>
+            <h2>Notas Existentes</h2>
             
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="text-center ">Grado</th>
-                        <th class="text-center ">Nivel eduacativo</th>
-                        <th class="text-center ">Jornada</th>
+                        <th class="text-center ">nombre Alumno </th>
+                        <th class="text-center ">Actividad</th>
+                        <th class="text-center ">Logro</th>
+                        <th class="text-center ">Materia</th>
+                        <th class="text-center ">nota</th>
+                        <th class="text-center ">fecha_nota</th>
                         <th class="text-center " colspan="2">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><?php foreach ($grados as $grado) : ?>
-                        <td class="text-center"><?php echo $grado->grado?></td>
-                        <td class="text-center"><?php echo $grado->nivel_educativo?></td>
-                        <td class="text-center"><?php echo $grado->jornada?></td>
-
-                        <td class="text-center">
-                        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#actualizar<?php echo $grado->id_grado ?>">Actualizar</a>
+                    <tr><?php foreach ($notas as $nota) : ?>
+                        <td class="text-center"><?php echo $nota->nombre?>   <?php echo $nota->apellido?></td>
+                        <td class="text-center"><?php echo $nota->nom_actividad?></td>
+                        <td class="text-center"><?php echo $nota->nombre_logro ?></td>
+                        <td class="text-center"><?php echo $nota->materia?></td>
+                        <td class="text-center"><?php echo $nota->nota ?></td>
+                        <td class="text-center"><?php echo $nota->fecha_nota?></td>
+                        <td class="actions">
+                        <a type="button" class="btn " data-bs-toggle="modal" data-bs-target="#actualizar<?php echo $nota->id_nota ?>">Actualizar</a>
                         </td>
                         <td class="actions">
-                        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $grado->id_grado ?>">Eliminar</a>
+                        <a type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $nota->id_nota ?>">Eliminar</a>
                         </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
+
             <div class="d-flex justify-content-center mb-4">
             <a class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#crear">Crear Grado</a>
         </div>
         </section>
+
+                    <!--crear-->
+
         <div class="modal fade" id="crear" tabindex="-1" aria-labelledby="crearLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -101,50 +110,33 @@ include_once "consulta.php";
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                    <form class="formulario" action="../funciones/crear.php" method="POST">
-    <label for="id_jornada">Jornada</label>
-                        <select name="jornada_id_jornada" id="id_jornada" required>
-                            <option selected disabled>--Seleccionar jornada--</option>
-                            <?php foreach ($jornadas as $jornada): ?>
-                                <option value="<?= $jornada['id_jornada'] ?>"><?= $jornada['jornada'] ?></option>
+                    <form class="formulario" action="crear.php" method="POST">
+                    <section class="mb-3">
+                  <label for="registro_num_doc">Alumno</label>
+                        <select  class="form-control" name="registro_num_doc" id="registro_num_doc" required>
+                            <option selected disabled>Seleccione Alumno</option>
+                            <?php foreach ($registros as $registro): ?>
+                                <option value="<?= $registro['num_doc'] ?>"><?= $registro['nombre'] ?>  <?= $registro['apellido'] ?></option>
                             <?php endforeach; ?>
         </select>
-    <section class="nivel">
-        <p>Seleccione el nivel eduactivo</p>
-        <input type="radio" id="Primaria"value="Primaria" name="nivel_educativo">
-        <label for="Primaria">Primaria</label><br>
-        <input type="radio" id="Bachillerato" value="Bachillerato" name="nivel_educativo">
-        <label for="Bachillerato">Bachillerato</label><br>
-        <section class="grado">
-            <p>selecione los grados que tiene en Primaria</p>
-            <input type="checkbox" id="celo" value="0°" name="grado[]" >
-            <label for="cero"> 0º</label>
-            <input type="checkbox" id="primero" value="1°" name="grado[]">
-            <label for="primero"> 1º</label>
-            <input type="checkbox" id="segundo" value="2°" name="grado[]">
-            <label for="segundo"> 2º</label>
-            <input type="checkbox" id="tercero" value="3°" name="grado[]">
-            <label for="tercero"> 3º</label>
-            <input type="checkbox" id="cuarto" value="4°" name="grado[]">
-            <label for="cuarto"> 4º</label>
-            <input type="checkbox" id="quinto"value="5°" name="grado[]">
-            <label for="quinto"> 5º</label>
-        </section>
-        <section class="grado">
-            <p>Seleccione los grados que tiene en Bachillerato</p>
-                    <input type="checkbox" id="sexto" value="6°" name="grado[]">
-                    <label for="sexto"> 6º</label>
-                    <input type="checkbox" id="septimo" value="7°" name="grado[]">
-                    <label for="septimo"> 7º</label>
-                    <input type="checkbox" id="octavo" value="8°" name="grado[]">
-                    <label for="octavo"> 8º</label>
-                    <input type="checkbox" id="noveno" value="9°" name="grado[]">
-                    <label for="noveno"> 9º</label>
-                    <input type="checkbox" id="decimo" value="10°" name="grado[]">
-                    <label for="decimo"> 10º</label>
-                    <input type="checkbox" id="once" value="11°" name="grado[]">
-                    <label for="once"> 11º</label>
-        </section>
+                            </section>
+        <section class="mb-3">
+        <label for="actividades_id_actividades" >Actividad</label>
+                        <select  class="form-control" name="actividades_id_actividades"  id="actividades_id_actividades"  required>
+                            <option selected disabled>Seleccionar Actvidad</option>
+                            <?php foreach ($actividades as $actividad): ?>
+                            <option value="<?= $actividad['id_actividad'] ?>"><?= $actividad['nom_actividad'] ?> </option>
+                            <?php endforeach; ?>
+        </select>
+                            </section>
+        <section class="mb-3">
+                                <label for="curso">Ingrese nota</label>
+                                <input type="number" name="nota" class="form-control" required>
+                            </section>
+                            <section class="mb-3">
+                                <label for="curso">Ingrese fecha de la nota </label>
+                                <input type="date" name="fecha_nota" class="form-control" required>
+                            </section>
     </section>
     <section class="btn">
         <input type="submit"name="insertar"value="Enviar">
@@ -155,8 +147,9 @@ include_once "consulta.php";
             </div>
         </div>
 
-        <?php foreach($grados as $grado): ?>
-<div class="modal fade" id="actualizar<?php echo $grado->id_grado ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <!--Actualizar-->
+        <?php foreach($notas as $nota): ?>
+<div class="modal fade" id="actualizar<?php echo $nota->id_nota ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -164,37 +157,40 @@ include_once "consulta.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formActualizar" method="POST" action="../funciones/Actualizar.php">
-                <input type="hidden" name="id_grado" id="id_grado" value="<?php echo $grado->id_grado ?>">
-              <select class="form-control" id="nivel_educativo" name="nivel_educativo">
-                <option <?= $grado->nivel_educativo == 'Primaria' ? 'selected' : '' ?>>Primaria</option>
-                <option <?= $grado->nivel_educativo == 'Bachillerato' ? 'selected' : '' ?>>Bachillerato</option>
-                </select>
-                <section class="grado">
-    <p>Seleccione los grados disponibles:</p>
-    <select class="form-control" name="grado" id="grado" required>
-    <option value="0°" <?= $grado->grado == '0°' ? 'selected' : '' ?>>0º</option>
-    <option value="1°" <?= $grado->grado == '1°' ? 'selected' : '' ?>>1º</option>
-    <option value="2°" <?= $grado->grado == '2°' ? 'selected' : '' ?>>2º</option>
-    <option value="3°" <?= $grado->grado == '3°' ? 'selected' : '' ?>>3º</option>
-    <option value="4°" <?= $grado->grado == '4°' ? 'selected' : '' ?>>4º</option>
-    <option value="5°" <?= $grado->grado == '5°' ? 'selected' : '' ?>>5º</option>
-    <option value="6°" <?= $grado->grado == '6°' ? 'selected' : '' ?>>6º</option>
-    <option value="7°" <?= $grado->grado == '7°' ? 'selected' : '' ?>>7º</option>
-    <option value="8°" <?= $grado->grado == '8°' ? 'selected' : '' ?>>8º</option>
-    <option value="9°" <?= $grado->grado == '9°' ? 'selected' : '' ?>>9º</option>
-    <option value="10°" <?= $grado->grado == '10°' ? 'selected' : '' ?>>10º</option>
-    <option value="11°" <?= $grado->grado == '11°' ? 'selected' : '' ?>>11º</option>
-    </select>
-</section>
-
-    <select class="form-control" name="jornada_id_jornada" id="jornada_id_jornada" required>
-                                    <?php foreach ($jornadas as $jornada): ?>
-                                        <option value="<?= $jornada['id_jornada'] ?>" <?= $grado->jornada_id_jornada == $jornada['id_jornada'] ? 'selected' : '' ?>>
-                                            <?= htmlspecialchars($jornada['jornada']) ?>
+                <form id="formActualizar" method="POST" action="Actualizar.php">
+                <input type="hidden" name="id_nota" id="id_nota" value="<?php echo $nota->id_nota ?>">
+                <section class="mb-3">
+                  <label for="registro_num_doc">Alumno</label>
+                        <select  class="form-control" name="registro_num_doc" id="registro_num_doc" required>
+                            <option selected disabled>Seleccione Alumno</option>
+                            <?php foreach ($registros as $registro): ?>
+                                <option value="<?= $registro['num_doc'] ?>"><?= $registro['nombre'] ?>  <?= $registro['apellido'] ?></option>
+                                <option value="<?= $registro['num_doc'] ?>" <?= $nota->registro_num_doc == $registro['num_doc'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($registro['nombre']) ?>   <?= htmlspecialchars($registro['apellido']) ?>
                                         </option>
-                                    <?php endforeach; ?>
-                                </select>
+                            <?php endforeach; ?>
+        </select>
+                            </section>
+        <section class="mb-3">
+        <label for="actividades_id_actividades">Actividad</label>
+                        <select  class="form-control" name="actividades_id_actividades" id="actividades_id_actividades" required>
+                            <option selected disabled>Seleccionar Actvidad</option>
+                            <?php foreach ($actividades as $actividad): ?>
+                            <option value="<?= $actividad['id_actividad'] ?>" <?= $nota->actividades_id_actividades == $actividad['id_actividad'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($actividad['nom_actividad']) ?>
+                                        </option>
+                            <?php endforeach; ?>
+        </select>
+                            </section>
+        <section class="mb-3">
+                                <label for="curso">Ingrese nota</label>
+                                <input type="number" name="nota" class="form-control" value="<?php echo htmlspecialchars($nota->nota); ?>" required>
+                            </section>
+                            <section class="mb-3">
+                                <label for="curso">Ingrese fecha de la nota </label>
+                                <input type="date" name="fecha_nota" class="form-control" value="<?php echo htmlspecialchars($nota->fecha_nota); ?>" required>
+                            </section>
+    </section>
                     <div class="modal-footer mt-3 justify-content-center">
                     <button type="submit" class="btn btn-dark r">Actualizar</button>
         </div>
@@ -205,13 +201,13 @@ include_once "consulta.php";
 </div>
 <?php endforeach; ?>
 
-
-        <?php foreach($grados as $grado): ?>
-    <div class="modal fade" id="confirmarModal<?php echo $grado->id_grado ?>" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel<?php echo $grado->id_grado ?>" aria-hidden="true">
+                                    <!--ELIMINAR-->
+        <?php foreach($notas as $nota): ?>
+    <div class="modal fade" id="confirmarModal<?php echo $nota->id_nota ?>" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel<?php echo $nota->id_nota ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmarModalLabel<?php echo $grado->id_grado ?>">Confirmar Eliminación </h5>
+                    <h5 class="modal-title" id="confirmarModalLabel<?php echo $nota->id_nota ?>">Confirmar Eliminación </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -219,8 +215,8 @@ include_once "consulta.php";
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form method="POST" action="../funciones/eliminar.php">
-                        <input type="hidden" name="id_grado" value="<?php echo $grado->id_grado ?>">
+                    <form method="POST" action="eliminar.php">
+                        <input type="hidden" name="id_nota" value="<?php echo $nota->id_nota?>">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                 </div>

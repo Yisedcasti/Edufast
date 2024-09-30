@@ -1,4 +1,6 @@
+/* Bootstrap CSS */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css');
+
 body {
     margin: 0;
     padding: 0;
@@ -14,15 +16,22 @@ body {
 	--main-bg-color: #009d63;
 	--main-text-color: #009d63;
 	--second-text-color: #76787c;
+  --three-text-color:#c1efde;
 	--second-bg-color: #c1efde;
+  --three-bg-color:#a4a4a4;
+  --fourth-bg-color:#545454;
+  }
+
+  .listado {
+    background: linear-gradient(to bottom right,#a4a4a4,#545454);
   }
   
   .primary-text {
-	color: var(--main-text-color);
+    color: var(--three-text-color);
   }
   
   .second-text {
-	color: var(--second-text-color);
+	color: var(--three-text-color);
   }
 
   
@@ -84,7 +93,6 @@ body {
 	font-weight: bold;
 	border: none;
   }
-
   .main-container {
     width: 100%;
     display: flex;
@@ -173,7 +181,6 @@ tr:hover {
     color: #000; 
 }
 
-
 .socials {
     list-style: none;
     display: flex;
@@ -230,3 +237,5 @@ tr:hover {
 	  margin-left: -15rem;
 	}
   }
+
+  

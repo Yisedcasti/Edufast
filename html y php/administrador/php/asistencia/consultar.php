@@ -10,8 +10,8 @@ try {
 
     ");
     $sentencia->execute();
-    $asistencia = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    $registro = $base_de_datos->query("SELECT * FROM registro")->fetchAll(PDO::FETCH_ASSOC);
+    $asistencias = $sentencia->fetchAll(PDO::FETCH_OBJ);
+    $registros = $base_de_datos->query("SELECT * FROM registro")->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     exit();

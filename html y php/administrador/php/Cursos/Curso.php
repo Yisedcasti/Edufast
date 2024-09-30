@@ -16,7 +16,7 @@ include "consultarcurso.php";
 
 <body>
     <div class="d-flex" id="wrapper">
-    <div class="bg-white" id="sidebar-wrapper">
+    <div class="listado" id="sidebar-wrapper">
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
             <div class="list-group list-group-flush my-3">
 
@@ -27,8 +27,6 @@ include "consultarcurso.php";
                 <a href="curso.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Jornadas</a>
 
                 <a href="grado.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Grados</a>
-
-                <a href="jornada.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
 
                 <a href="logro.html" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asisitencias</a>
 

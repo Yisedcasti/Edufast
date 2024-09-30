@@ -1,177 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <?php
 include "consultarLogro.php";
 ?>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/logro.css">
-    <title>Logro</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/nav.css" />
+    <title>Página Principal</title>
 </head>
+
 <body>
-  </style>
-<header class="navbar navbar-expand-lg bg-body-tertiary shadow">
-    <div class="container d-flex justify-content-between align-items-left">
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold text-success d-flex align-items-center gap-2" href="#">
-            <img src="../imagenes/logo.png" alt="Logo" width="68" height="68" class="d-inline-block align-text-top">
-            <span class="text-dark">EDUFAST</span>
-        </a>
-        <!-- Botón Responsive -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <style>
+        .container {
+            font-family: serif;
+            font-size: 17px;
+        }
 
-        <!-- Menú -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <div class="navbar-nav ms-auto fs-5">
-            <a class="nav-link  active" href="../../admin/pag_principal.php">Volver</a>
-            <a class="nav-link  active" type="button"  data-bs-toggle="modal" data-bs-target="#crear">Crear logro</a>
+        .card {
+            background: linear-gradient(to bottom right, #8FB8DE, #A4C3B2);
+        }
+    </style>
+    <div class="d-flex" id="wrapper">
+        <div class="listado" id="sidebar-wrapper">
+            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">EDUFAST</div>
+            <div class="list-group list-group-flush my-3">
+                <a href="../admin/crear/publicaciones_crear.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Publicaciones</a>
+                <a href="../php/registro/funciones/registro.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Registro</a>
+                <a href="../php/jornadas/vistas/jornadas.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Jornadas</a>
+                <a href="../php/grados/vistas/grados.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Grados</a>
+                <a href="../php/cursos/curso.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Cursos</a>
+                <a href="../php/asistencia/asistencia.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Asistencias</a>
+                <a href="../php/materiaphp/materia.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Materias</a>
+                <a href="../php/logrophp/logros.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Logros</a>
+                <a href="../php/actividad/actividad.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Actividades</a>
+                <a href="../php/notas/notas.php" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">Notas</a>
             </div>
         </div>
-    </div>
-</header>
 
-<main class="main-container" style="flex:4;">
-  <h1 class="title text-center mt-3">LOGROS</h1>
-  <section class="row p-3">
-    <?php foreach($logro as $item): ?>
-      <section class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4">
-        <section class="card">
-          <section class="card-body text-center" style="font-family: Arial, Helvetica, sans-serif;">
-          <div class="card-color">
-          <p class="card-text text-left"><span id="cardcolor"><b>Código Logro: </b><?php echo htmlspecialchars($item->codigo_logro); ?></span></p>
-          <p class="card-text text-left"><span id="cardcolor"><b>Número De Materia: </b><?php echo htmlspecialchars($item->id_materia); ?></p></span>
-            <h5 class="card-title text-center"><b>Título: </b><span id="cardcolor"><?php echo htmlspecialchars($item->nombre_logro); ?></span></h5>
-            <p class="card-text"><b>Descripción: </b><span id="cardcolor"><?php echo htmlspecialchars($item->descrip_logro); ?></span></p>
-            
-            <div class="d-flex justify-content-between">
-              <button type="button" class="btn btn-outline-dark boton-carrito"  data-bs-toggle="modal" data-bs-target="#eliminarModal<?=$item->codigo_logro?>"><i class="fas fa-trash-alt"></i></button>
-              <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#actualizar<?=$item->codigo_logro?>"><i class="fas fa-edit"></i></button>
-            </div> 
-          </section>
-        </section>
-      </section>
-    <!--Eliminar-->
-    <div class="modal fade" style="font-family: Arial, Helvetica, sans-serif;" id="eliminarModal<?= $item->codigo_logro ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="eliminarModalLabel<?=$item->codigo_logro?>" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center"><b>Eliminar Logro </b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>¿Está seguro que desea eliminar el logro <b><?= $item->nombre_logro ?></b>? Esta acción no se puede deshacer.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <form method="POST" action="eliminarlogro.php">
-          <input type="hidden" name="id_materia" value="<?=$item->id_materia?>">
-            <input type="hidden" name="codigo_logro" value="<?=$item->codigo_logro?>">
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-              <!--FORMULARIO aCTUALIZAR-->
-  <div class="modal fade" style="font-family: Arial, Helvetica, sans-serif;" id="actualizar<?=$item->codigo_logro?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="actualizar<?=$item->codigo_logro?>" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-center" id="tituloformulario"><b>Actualizar Logro <?= $item->codigo_logro ?></b></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form method="POST" action="guardarDatos.php">
-            <input type="hidden" name="codigo_logro" value="<?=$item->codigo_logro?>">
-            <div class="mb-3">
-              <label for="nameLogroUpdate<?=$item->codigo_logro?>" class="form-label">Nombre del Logro</label>
-              <input name="nombre_logro" type="text" class="form-control" id="nameLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->nombre_logro) ?>">
-            </div>
-            <div class="mb-3">
-              <label for="descripLogroUpdate<?=$item->codigo_logro?>" class="form-label">Descripción del Logro</label>
-              <input name="descrip_logro" type="text" class="form-control" id="descripLogroUpdate<?=$item->codigo_logro?>" value="<?= htmlspecialchars($item->descrip_logro) ?>">
-            </div>
-            <div class="mb-3">
-              <label for="materiaLogroUpdate<?=$item->codigo_logro?>" class="form-label">Materia a la que pertenece</label>
-              <select name="id_materia" class="form-select" id="materiaLogroUpdate<?=$item->codigo_logro?>">
-                <option value="1" <?= $item->id_materia == 1 ? 'selected' : '' ?>>Español</option>
-                <option value="2" <?= $item->id_materia == 2 ? 'selected' : '' ?>>ESPAÑOL</option>
-                <option value="3" <?= $item->id_materia == 3 ? 'selected' : '' ?>>INGLES</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary btnmodal">Actualizar</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <?php endforeach; ?>
-
-              <!--FORMULARIO CREAR-->
-              <div class="modal fade" style="font-family: Arial, Helvetica, sans-serif;" id="crear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloformulario" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-center" id="tituloformulario"><b>Crear Logro</b></h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form method="post" action="registrarLogro.php">
-                        <div class="mb-3">
-                          <label for="codLogro" class="form-label">Codigo Logro</label>
-                          <input placeholder="Escribe el codigo del logro" name="codigo_logro" type="number" class="form-control" id="codLogro">
-                          
-                        </div>
-                        <div class="mb-3">
-                          <label for="nameLogro" class="form-label">Nombre del Logro</label>
-                          <input placeholder="Escribe el titulo del logro" name="nombre_logro" type="text" class="form-control" id="nameLogro">
-                        </div>
-                        <div class="mb-3">
-                          <label for="descripLogro" class="form-label">Descripciòn del Logro</label>
-                          <textarea placeholder="Escribe la descripcion del logro" name="descrip_logro" class="form-control" id="descriplogro" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                          <label for="descripLogro" class="form-label">Materia a la que pertenece</label>
-                          <select name="id_materia" class="form-select" aria-label="Default select example">
-                            <option selected>seleccione una materia</option>
-                            <option value="1">MATEMATICAS</option>
-                            <option value="2">ESPAÑOL</option>
-                            <option value="3">INGLES</option>
-                          </select>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary btnmodal">Crear</button>
-                      </form>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary " data-bs-dismiss="modal">Cerrar</button>
-
-                    </div>
-                  </div>
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-4 px-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-align-left fs-4 me-3" id="menu-toggle"></i>
+                    <h2 class="fs-2 m-0">Bienvenido</h2>
                 </div>
-              </div>
-          </main>
-          
-    </section>
-    <footer class="footer-bottom">
-            <p>copyright &copy;2024 codeOpacity. designed by <span>EDUFAST</span></p>
-            <footer class="socials">
-                <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/plumapaulista/" class="icon"><i class="fab fa-instagram"></i></a>
-                        <a href="https://x.com/Cedidsanpablo" class="icon"><i class="fab fa-twitter"></i></a>
-                        <a href="mailto:cedidsanpablobosa7@educacionbogota.edu.co" class="icon"><i class="fab fa-google"></i></a>
-            </footer>
-            </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle second-text fw-bold" href="#" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>Maria Camila Torres Jaramillo
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">Salir</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container mt-5">
+                <div class="row">
+                    <main class="main-container">
+                        <section class="container">
+                            <h1 class="title text-center mb-5">LOGROS</h1>
+                            <section class="row">
+                                <?php foreach ($logros as $logro): ?>
+                                    <section class="col-lg-4 col-md-8 col-sm-8 col-12 mb-4">
+                                        <section class="card">
+                                            <section class="card-body">
+                                                <div class="card-color">
+                                                    <p class="card-text text-left"><?php echo htmlspecialchars($logro->codigo_logro); ?> <h5 class="text-center"><?php echo htmlspecialchars($logro->nombre_logro); ?></h5></p>
+                                                    <p class="card-text text-left"><?php echo htmlspecialchars($logro->materia); ?></p>
+                                                    <p class="card-text text-left"><?php echo htmlspecialchars($logro->descrip_logro); ?></p>
+
+                                                    <div class="d-flex justify-content-between">
+                                                        <button type="button" class="btn btn-outline-dark boton-carrito" data-bs-toggle="modal" data-bs-target="#eliminarModal<?=$logro->codigo_logro?>"><i class="fas fa-trash-alt"></i></button>
+                                                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#actualizar<?=$logro->codigo_logro?>"><i class="fas fa-edit"></i></button>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </section>
+                                    </section>
+                                <?php endforeach; ?>
+                            </section>
+                            <div class="d-flex justify-content-center mt-5">
+                                <a class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#crear">Crear Grado</a>
+                            </div>
+                        </section>
+
+                        <!--FORMULARIO CREAR-->
+                        <div class="modal fade" id="crear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloformulario" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="tituloformulario"><b>Crear Logro</b></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="registrarLogro.php">
+                                            <div class="mb-3">
+                                                <label for="codLogro" class="form-label">Código Logro</label>
+                                                <input placeholder="Escribe el código del logro" name="codigo_logro" type="number" class="form-control" id="codLogro">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="nameLogro" class="form-label">Nombre del Logro</label>
+                                                <input placeholder="Escribe el título del logro" name="nombre_logro" type="text" class="form-control" id="nameLogro">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="descripLogro" class="form-label">Descripción del Logro</label>
+                                                <textarea placeholder="Escribe la descripción del logro" name="descrip_logro" class="form-control" id="descriplogro" rows="3"></textarea>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="id_materia">Actividad</label>
+                                                <select class="form-control" name="id_materia" id="id_materia" required>
+                                                    <option selected disabled>Seleccionar Materia</option>
+                                                    <?php foreach ($materias as $materia): ?>
+                                                        <option value="<?= $materia['id_materia'] ?>"><?= $materia['materia'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btnmodal">Crear</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--FORMULARIO ACTUALIZAR-->
+                        <?php foreach ($logros as $logro): ?>
+                            <div class="modal fade" id="actualizar<?=$logro->codigo_logro?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="actualizar<?=$logro->codigo_logro?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="actualizar<?=$logro->codigo_logro?>"><b>Actualizar Logro</b></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post" action="actualizar.php">
+                                                <div class="mb-3">
+                                                    <label for="codLogro" class="form-label">Código Logro</label>
+                                                    <input placeholder="Escribe el código del logro" name="codigo_logro" value="<?php echo htmlspecialchars($logro->codigo_logro); ?>" type="number" class="form-control" id="codLogro" >
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="nameLogro" class="form-label">Nombre del Logro</label>
+                                                    <input placeholder="Escribe el título del logro" name="nombre_logro" value="<?php echo htmlspecialchars($logro->nombre_logro); ?>" type="text" class="form-control" id="nameLogro">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripLogro" class="form-label">Descripción del Logro</label>
+                                                    <textarea placeholder="Escribe la descripción del logro" name="descrip_logro" class="form-control" id="descriplogro" rows="3"><?php echo htmlspecialchars($logro->descrip_logro); ?></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="id_materia">Materia</label>
+                                                    <select class="form-control" name="id_materia" id="id_materia" required>
+                                                        <option selected disabled>Seleccionar Materia</option>
+                                                        <?php foreach ($materias as $materia): ?>
+                                                            <option value="<?= $materia['id_materia'] ?>" <?= $logro->id_materia == $materia['id_materia'] ? 'selected' : '' ?>><?= $materia['materia'] ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary btnmodal">Actualizar</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--FORMULARIO ELIMINAR-->
+                            <div class="modal fade" id="eliminarModal<?=$logro->codigo_logro?>" tabindex="-1" aria-labelledby="eliminarModal<?=$logro->codigo_logro?>" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="eliminarModal<?=$logro->codigo_logro?>">Eliminar Logro</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estás seguro de que deseas eliminar el logro <strong><?php echo htmlspecialchars($logro->nombre_logro); ?></strong>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form method="post" action="eliminarLogro.php">
+                                                <input type="hidden" name="codigo_logro" value="<?php echo htmlspecialchars($logro->codigo_logro); ?>">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-bottom bg-dark text-white text-center py-3 mt-auto">
+        <p class="mb-0">©2024 codeOpacity. Designed by <span>EDUFAST</span></p>
+        <div class="socials d-flex justify-content-center mt-2">
+            <a href="https://www.facebook.com/cedid.sanpablo.3?locale=es_LA" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/plumapaulista/" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/Cedidsanpablo" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="mailto:cedidsanpablobosa7@educacionbogota.edu.co" class="text-white mx-2"><i class="fab fa-google"></i></a>
+        </div>
+    </footer>
+                                                        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../js/nav.js"></script>
 </body>
+
 </html>

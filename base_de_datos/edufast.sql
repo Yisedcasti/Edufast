@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-09-2024 a las 03:48:03
+-- Tiempo de generación: 30-09-2024 a las 09:20:59
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -340,14 +340,6 @@ CREATE TABLE `actividad` (
   `logro_materia_id_materia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `actividad`
---
-
-INSERT INTO `actividad` (`id_actividad`, `nom_actividad`, `descrip_actividad`, `fecha_entrega`, `logro_Codigo_logro`, `logro_materia_id_materia`) VALUES
-(4, 'Sql', 'Cree una base de datos con dos tablas las cuales tengan una relaciòn de muchos a uno ', '2024-09-26', 8763, 1),
-(5, ' php', 'Crear un archivo el cual mande los datos cuando se registras a otra pagina donde se van a mostrar', '2024-09-12', 8763, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -460,8 +452,9 @@ CREATE TABLE `logro` (
 --
 
 INSERT INTO `logro` (`codigo_logro`, `nombre_logro`, `descrip_logro`, `id_materia`) VALUES
-(8763, 'analisis', 'analizar las bases de datos', 1),
-(8764, 'PHP', 'Analizar y saber como hacer php', 1);
+(8763, 'analisis', 'aja', 1),
+(8765, 'PHP', 'Aprenderá a escribir codigo php y mas cosas', 1),
+(8766, 'xd', 'dddd', 1);
 
 -- --------------------------------------------------------
 
@@ -531,12 +524,12 @@ CREATE TABLE `nota` (
 
 CREATE TABLE `publicacion` (
   `id_publicacion` int(11) NOT NULL,
-  `imagen` longtext NOT NULL,
-  `evento` varchar(50) NOT NULL,
-  `fecha_evento` date NOT NULL,
-  `informacion` varchar(200) NOT NULL,
-  `titulo` varchar(45) NOT NULL,
-  `escritoPor` varchar(200) NOT NULL
+  `imagen` longtext DEFAULT NULL,
+  `evento` varchar(50) DEFAULT NULL,
+  `fecha_evento` date DEFAULT NULL,
+  `informacion` varchar(200) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
+  `escritoPor` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -575,9 +568,7 @@ CREATE TABLE `registro` (
 --
 
 INSERT INTO `registro` (`num_doc`, `tipo_doc`, `imagen`, `celular`, `nombre`, `apellido`, `correo`, `usuario`, `contraseña`, `id_rol`, `id_jornada`) VALUES
-(12345678, 'CC', 'ruta/imagen.png', '1234567890', 'Juan', 'Pérez', 'juan.perez@example.com', 'juanp', 0xd3616a06faeb8aca2e491047bf91a5dd, 1, 1),
-(1141114912, 'TI', NULL, '3213675466', 'JUlian', 'Lozano', 'Julian@gmail.com', 'Diablo', 0xafc1f4a797cce373af65cb09e193dd48, 1, 6),
-(1141114956, 'CC', NULL, '3213679766', 'Dayana', 'aaaa', 'a@gmail.com', 'lara', 0x323334, 2, 6);
+(12345678, 'CC', 'ruta/imagen.png', '1234567890', 'Juan', 'Pérez', 'juan.perez@example.com', 'juanp', 0xd3616a06faeb8aca2e491047bf91a5dd, 1, 1);
 
 --
 -- Disparadores `registro`
@@ -1124,7 +1115,7 @@ ALTER TABLE `jornada`
 -- AUTO_INCREMENT de la tabla `logro`
 --
 ALTER TABLE `logro`
-  MODIFY `codigo_logro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8765;
+  MODIFY `codigo_logro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8767;
 
 --
 -- AUTO_INCREMENT de la tabla `materia`
@@ -1136,7 +1127,7 @@ ALTER TABLE `materia`
 -- AUTO_INCREMENT de la tabla `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacion`
