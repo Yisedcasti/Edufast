@@ -11,7 +11,7 @@ try {
     ");
     $sentencia->execute();
     $asistencias = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    $registros = $base_de_datos->query("SELECT * FROM registro")->fetchAll(PDO::FETCH_ASSOC);
+    $registros = $base_de_datos->query("SELECT * FROM registro where id_rol= 4")->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     exit();

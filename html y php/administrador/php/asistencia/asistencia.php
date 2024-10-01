@@ -70,30 +70,32 @@ include_once "consultar.php";
                 <div class="row">
                     <div class="col-md-12 text-center">
                     <main class="main-container ">
-      <h1 class="title text-center mt-3">Asistencia</h1>
-    <section class="row p-3">
-    <?php foreach ($asistencias as $asistencia) : ?>
-        <section class="col -lg- 4 col-md-3 col-sm-6 col-12 mb-4">
-          <section class="card">
-            <section class="card-body">
-              <h5 class="card-title"><?php echo htmlspecialchars($asistencia->fecha_asistencia); ?></h5>
-              <p class="card-text"><?php echo htmlspecialchars($asistencia->asistencia); ?></p>
-              <p class="crad-text"><?php echo htmlspecialchars($asistencia->registro_num_doc); ?></p>
-              <div class="d-flex justify-content-between">
-
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $asistencia->id_asistencia ?>">
-                <i class="fas fa-trash-alt"></i>
-<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#actualizarModal<?php echo $asistencia->id_asistencia ?>">
-    <i class="fas fa-edit"></i>
-</button>
-
-            </div>
-            </section>
-            </section>
-            </section>
+                    <h1 class="text-dark m-4">Asistencias</h1>
+        <section class="container">
+        <?php foreach ($asistencias as $asistencia) : ?>
+            <table class="table mb-5">
+                <tr>
+                    <th  class="text-center">Asistencia</th>
+                    <th  class="text-center">Fecha_asistencia</th>
+                    <th  class="text-center">Alumno</th>
+                    <th  class="text-center">Acciones</th>
+                </tr>
+                <tr>
+                    <td class="cursos text-center mt-3"><?php echo htmlspecialchars($asistencia->asistencia); ?></td>
+                    <td class="cursos text-center mt-3"><?php echo htmlspecialchars($asistencia->fecha_asistencia); ?></td>
+                    <td class="cursos text-center mt-3"><?php echo htmlspecialchars($asistencia->nombre); ?> <?php echo htmlspecialchars($asistencia->apellido); ?></td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#actualizarModal<?php echo $asistencia->id_asistencia ?>"><i class="fas fa-edit"></i></button>
+                        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#confirmarModal<?php echo $asistencia->id_asistencia ?>"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </table>
             <?php endforeach; ?>
-          </section>
-
+            <div class="d-flex justify-content-center mb-4">
+            <a class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#crear">Crear Curso</a>
+        </div>
+        </section>
+        
 
 <!-- actualizar -->
 <?php foreach($asistencias as $asistencia): ?>
@@ -107,6 +109,16 @@ include_once "consultar.php";
             <div class="modal-body">
                 <form id="formActualizar" method="POST" action="Actualizar.php">
                     <input type="hidden" name="id_asistencia" id="id_asistencia" value="<?php echo $asistencia->id_asistencia ?>">
+                    <div class="form-group">
+    <label for="registro_num_doc">Estudiante</label>
+    <select class="form-control" name="registro_num_doc" id="registro_num_doc" required>
+                                    <?php foreach ($registros as $registro): ?>
+                                        <option value="<?= $registro['num_doc'] ?>" <?= $asistencia->registro_num_doc == $registro['num_doc'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($registro['nombre']) ?> <?= htmlspecialchars($registro['apellido']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+</div>
                     <div class="mb-3">
                         <label for="fecha_asistencia" class="form-label">Fecha Asistencia</label>
                         <input type="date" class="form-control" id="fecha_asistencia" name="fecha_asistencia" value="<?php echo $asistencia->fecha_asistencia ?>" required>
@@ -116,17 +128,6 @@ include_once "consultar.php";
                         <label for="asistencia" class="form-label">Asistencia</label>
                         <input type="text" class="form-control" id="asistencia" name="asistencia" value="<?php echo $asistencia->asistencia ?>" required>
 </div>              
-                    <div class="form-group">
-    <label for="codigo_logro">Logro</label>
-    <select class="form-control" name="codigo_logro" id="codigo_logro" required>
-        <?php foreach ($logros as $logro): ?>
-            <option value="<?= $logro['codigo_logro'] ?>" 
-                <?= isset($_POST['codigo_logro']) && $_POST['codigo_logro'] == $logro['codigo_logro'] ? 'selected' : '' ?>>
-                <?= $logro['nombre_logro'] ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
                     <div class="modal-footer mt-3 justify-content-center">
                     <button type="submit" class="btn btn-dark r">Actualizar</button>
         </div>
@@ -138,6 +139,7 @@ include_once "consultar.php";
 <?php endforeach; ?>
 
           <!-- FORMULARIO CREAR -->
+
 <div class="modal fade" id="crear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloformulario" aria-hidden="true">
 <?php if (!empty($mensaje)): ?>
         <div class="alert <?= $claseAlerta; ?> alert-dismissible fade show" role="alert">
@@ -154,26 +156,23 @@ include_once "consultar.php";
             <div class="modal-body">
                 <h2 class="mt-5">Crear Actividad</h2>
                 <form action="guardar.php" method="POST">
-                    <div class="form-group">
-                        <label for="actividad">Actividad</label>
-                        <input type="text" class="form-control" id="actividad" name="nom_actividad" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="descrip_actividad">Descripción</label>
-                        <textarea class="form-control" id="descripcion_actividad" name="descrip_actividad" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="fecha_entrega">Fecha de Entrega</label>
-                        <input type="date" class="form-control" id="fecha_entrega" name="fecha_entrega" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="codigo_logro">Logro</label>
-                        <select class="form-control" name="codigo_logro" id="codigo_logro" required>
-                            <?php foreach ($logros as $logro): ?>
-                                <option value="<?= $logro['codigo_logro'] ?>"><?= $logro['nombre_logro'] ?></option>
+                <div class="form-group">
+                        <label for="registro_num_doc">Alumno</label>
+                        <select class="form-control" name="registro_num_doc" id="registro_num_doc" required>
+                            <?php foreach ($registros as $registro): ?>
+                                <option value="<?= $registro['num_doc'] ?>"><?= $registro['nombre'] ?> <?= $registro['apellido'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label for="asistencia">Asistencia</label>
+                        <input type="text" class="form-control" id="asistencia" name="asistencia" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_asistencia">fecha_asistencia</label>
+                          <input type="date" class="form-control" id="asistencia" name="fecha_asistencia" required>
+                    </div>
+                    
                     <div class="modal-footer m-3 justify-content-cente">
                         <button type="submit" class="btn btn-dark">Guardar</button>
                     </div>
@@ -184,12 +183,12 @@ include_once "consultar.php";
 </div>
 
                             <!--Eliminar-->
-<?php foreach($actividades as $actividad): ?>
-    <div class="modal fade" id="confirmarModal<?php echo $actividad->id_actividad ?>" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel<?php echo $persona->num_doc ?>" aria-hidden="true">
+<?php foreach($asistencias as $asistencia): ?>
+    <div class="modal fade" id="confirmarModal<?php echo $asistencia->id_asistencia ?>" tabindex="-1" role="dialog" aria-labelledby="confirmarModalLabel<?php echo $asistencia->id_asistencia ?>" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="confirmarModalLabel<?php echo $actividad->id_actividad ?>">Confirmar Eliminación <?php echo $actividad->nom_actividad ?> </h5>
+                    <h5 class="modal-title" id="confirmarModalLabel<?php echo $asistencia->id_asistencia?>">Confirmar Eliminación <?php echo $asistencia->asistencia ?> </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -198,7 +197,7 @@ include_once "consultar.php";
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <form method="POST" action="eliminar.php">
-                        <input type="hidden" name="id_actividad" value="<?php echo $actividad->id_actividad ?>">
+                        <input type="hidden" name="id_asistencia" value="<?php echo $asistencia->id_asistencia ?>">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                 </div>

@@ -1,15 +1,5 @@
 <?php
 # Verifica que todos los datos necesarios estén presentes
-if(
-    !isset($_POST["materia"]) || 
-    !isset($_POST["id_materia"])
-) {
-    echo "Faltan los siguientes datos:<br>";
-    if(!isset($_POST["materia"])) echo "Falta el nombre de la materia.<br>";
-    if(!isset($_POST["id_materia"])) echo "Falta el código de la materia.<br>";
-    exit();
-}
-
 try {
     # Incluye la conexión a la base de datos
     include_once "conexion.php";

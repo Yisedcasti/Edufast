@@ -10,11 +10,21 @@ include "consulta.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link rel="stylesheet" href="../../css/materia.css">
     <link rel="stylesheet" href="../../css/nav.css"/>
     <title>Pagina Principal</title>
 </head>
 <body>
+  <style>
+        .container {
+            font-family: serif;
+            font-size: 17px;
+        }
+
+        .card {
+            background: linear-gradient(to bottom right, #8FB8DE, #A4C3B2);
+        }
+    </style>
+
     <div class="d-flex" id="wrapper">
 
         <div class="listado" id="sidebar-wrapper">
@@ -68,33 +78,82 @@ include "consulta.php";
                     </ul>
                 </div>
             </nav>
-
-			<div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                    <h1 class="text-dark mt-5">MATERIAS</h1>
+                  
     <main class="main-container">
-    <?php foreach($materias as $materia): ?>
-        <section class="cardMaterias">
-            <header>
-                <h3><?php echo htmlspecialchars($materia->materia); ?></h3>
-            </header>
-            <p>Codigo Materia:<?php echo htmlspecialchars($materia->id_materia); ?></p>
-            <div class="actions">
-                <button type="button" class="btn-link" title="Eliminar" data-bs-toggle="modal" data-bs-target="#eliminarModal<?=$materia->id_materia?>">
+      <section class="container">
+                            <h1 class="title text-center mb-5">Materias</h1>
+                            <section class="row">
+                            <?php foreach($materias as $materia): ?>
+                                    <section class="col-lg-3 col-md-6 col-sm-6 col-12 mb-4">
+                                        <section class="card">
+                                            <section class="card-body">
+                                                <div class="card-color">
+                                                    <p class="card-text text-center"><?php echo htmlspecialchars($materia->materia); ?></p>
+                                                    <p class="card-text text-center"><?php echo htmlspecialchars($materia->nombre); ?> <?php echo htmlspecialchars($materia->apellido); ?></p>
+                                                    <p class="card-text text-center"><?php echo htmlspecialchars($materia->curso); ?></p>
+
+                                                    <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-dark" title="Eliminar" data-bs-toggle="modal" data-bs-target="#eliminarModal<?=$materia->id_materia?>">
                     <i class="fas fa-trash-alt"></i>
                 </button>
-                <button type="button" class="btn-link" title="Actualizar" data-bs-toggle="modal" data-bs-target="#actualizar<?=$materia->id_materia?>">
+                <button type="button" class="btn btn-outline-dark" title="Actualizar" data-bs-toggle="modal" data-bs-target="#actualizar<?=$materia->id_materia?>">
                     <i class="fas fa-edit"></i>
                 </button>
             </div>
-            <div class="d-flex justify-content-center mb-4">
-            <a class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#crear">Crear Curso</a>
-        </div>
-        </section>
+                                                </div>
+                                            </section>
+                                        </section>
+                                    </section>
+                                <?php endforeach; ?>
+                            </section>
+                            <div class="d-flex justify-content-center mt-5">
+                                <a class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#crear">Crear Grado</a>
+                            </div>
+                        </section>
 
+                        <div class="modal fade" id="crear" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="tituloformulario" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-center" id="tituloformulario"><b>Crear Logro</b></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="registrarmateria.php">
+                                        <input type="hidden" name="id_materia" value="<?=$materia->id_materia?>">
+                                            <div class="mb-3">
+                                                <label for="materia" class="form-label">Materia</label>
+                                                <input placeholder="escriba nombre de la materia" name="materia" type="text" class="form-control" id="materia">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="num_doc">Profesor</label>
+                                                <select class="form-control" name="num_doc" id="num_doc" required>
+                                                    <option selected disabled>Seleccionar profesor</option>
+                                                    <?php foreach ($registros as $registro): ?>
+                                                        <option value="<?= $registro['num_doc'] ?>"><?= $registro['nombre'] ?> <?= $registro['apellido'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="id_curso">Curso</label>
+                                                <select class="form-control" name="id_curso" id="id_curso" required>
+                                                    <option selected disabled>Seleccionar curso</option>
+                                                    <?php foreach ($cursos as $curso): ?>
+                                                        <option value="<?= $curso['id_curso'] ?>"><?= $curso['curso'] ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary btnmodal">Crear</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        
+                        <?php foreach($materias as $materia): ?>
   <!--FORMULARIO aCTUALIZAR-->
   <div class="modal fade" style="font-family: Arial, Helvetica, sans-serif;" id="actualizar<?=$materia->id_materia?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="actualizar<?=$materia->id_materia?>" aria-hidden="true">
     <div class="modal-dialog">
@@ -104,12 +163,30 @@ include "consulta.php";
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form method="POST" action="guardarDatos.php">
+          <form method="POST" action="actualizar.php">
             <input type="hidden" name="id_materia" value="<?=$materia->id_materia?>">
             <div class="mb-3">
-              <label for="namemateriaUpdate<?=$materia->id_materia?>" class="form-label">Nombre de Materia</label>
-              <input name="materia" type="text" class="form-control" id="namemateriaUpdate<?=$materia->id_materia?>" value="<?=($materia->materia) ?>">
-            </div>
+                                                    <label for="materia" class="form-label">Materia</label>
+                                                    <input  name="materia" value="<?php echo htmlspecialchars($materia->materia); ?>" class="form-control" id="materia" >
+                                                </div>
+            <div class="mb-3">
+                                                    <label for="num_doc">Profesor</label>
+                                                    <select class="form-control" name="num_doc" id="num_doc" required>
+                                                        <option selected disabled>Seleccionar profesor</option>
+                                                        <?php foreach ($registros as $registro): ?>
+                                                            <option value="<?= $registro['num_doc'] ?>" <?= $materia->num_doc == $registro['num_doc'] ? 'selected' : '' ?>><?= $registro['nombre'] ?> <?= $registro['apellido'] ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="id_curso">Curso</label>
+                                                    <select class="form-control" name="id_curso" id="id_curso" required>
+                                                        <option selected disabled>Seleccionar Materia</option>
+                                                        <?php foreach ($cursos as $curso): ?>
+                                                            <option value="<?= $curso['id_curso'] ?>" <?= $materia->id_curso == $curso['id_curso'] ? 'selected' : '' ?>><?= $curso['curso'] ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                </div>            
             <button type="submit" class="btn btn-primary btnmodal">Actualizar</button>
           </form>
         </div>
@@ -129,7 +206,7 @@ include "consulta.php";
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>¿Está seguro que desea eliminar la Materia <b><?= $materia->id_materia ?></b>? Esta acción no se puede deshacer.</p>
+          <p>¿Está seguro que desea eliminar la Materia <b><?= $materia->materia ?></b>? Esta acción no se puede deshacer.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
